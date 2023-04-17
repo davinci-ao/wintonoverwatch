@@ -16,7 +16,7 @@ WinstonOverwatch is a dating website for businesses where students can match wit
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/davinci-ao/wintonoverwatch/winstonoverwatch.git
+   git clone [https://github.com/davinci-ao/wintonoverwatch/winstonoverwatch.git](https://github.com/davinci-ao/wintonoverwatch.git)
    ```
 2. Configure the .env file with your database details:
    ```
