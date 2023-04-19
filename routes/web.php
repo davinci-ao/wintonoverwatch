@@ -1,5 +1,5 @@
 <?php
-
+use App\http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
+ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+     'verified'
+ ])->group(function () {
+    Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
+ });
+
+Route::get('/eventform', function(){
+    return view('eventform');
 });
+
+Route::post('/event/create', [EventController::class, 'create'])->name('dashboard');
