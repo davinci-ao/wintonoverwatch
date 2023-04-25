@@ -29,4 +29,4 @@ Route::get('/eventform', function(){
     return view('eventform');
 });
 
-Route::post('/event/create', [EventController::class, 'create'])->name('dashboard');
+Route::post('/event/create', [EventController::class, 'create']);
