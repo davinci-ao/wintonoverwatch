@@ -1,5 +1,6 @@
 <?php
 use App\http\Controllers\EventController;
+use App\http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,8 @@ Route::get('/', function () {
 Route::get('/eventform', function(){
     return view('eventform');
 });
+
+Route::get('/company/{id}', [CompanyController::class, 'getDetails']);
 
 Route::get('/event/{id}', [EventController::class, 'getDetails']);
 

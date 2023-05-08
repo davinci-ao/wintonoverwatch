@@ -22,6 +22,8 @@
                             {{$data->name}}
                             </h1>
 
+                            <a href="/company/{{$data->id}}">Klik</a>
+
                         </div>
                         @endif
                     @endforeach
