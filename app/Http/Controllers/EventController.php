@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Company;
+use App\Models\Company_Event;
 
 class EventController extends Controller
 {
@@ -23,5 +25,15 @@ class EventController extends Controller
         $event->save();
 
         return redirect('/dashboard');
+    }
+
+    public function getDetails($id){
+        $event = Event::where('id', $id)->get();
+
+        $select = Company_Event::where('event_id', $id)->get();
+
+        $company = Company::all();
+
+        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
     }
 }

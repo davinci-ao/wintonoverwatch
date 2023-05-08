@@ -29,4 +29,6 @@ Route::get('/eventform', function(){
     return view('eventform');
 });
 
+Route::get('/event/{id}', [EventController::class, 'getDetails']);
+
 Route::post('/event/create', [EventController::class, 'create']);
