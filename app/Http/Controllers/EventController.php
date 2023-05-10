@@ -22,6 +22,10 @@ class EventController extends Controller
 
         $event->description = $request->description;
 
+        $event->startDate = $request->startDate;
+
+        $event->endDate = $request->endDate;
+
         $event->save();
 
         return redirect('/dashboard');
