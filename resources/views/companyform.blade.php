@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <form method="POST" action ="/company/create">
                     @csrf
-                    Name: <input type="text" name="name"><br>
+                    Name: <input type="text" name="name" required><br>
                     <button type="submit" style="padding: 5px; border-width: 2px;">Submit</button>
                 </form>
             </div>

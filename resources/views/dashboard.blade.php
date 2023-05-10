@@ -21,7 +21,6 @@
                     <h2 classs="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
                     Start {{$data->startDate}}, eindigt {{$data->endDate}}
                     </h2>
-
                     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
                     {{$data->description}}
                     </p>

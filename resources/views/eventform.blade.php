@@ -17,7 +17,7 @@
                     Description: <input type="text" name="description" required><br>
                     StartDate: <input type="datetime-local" value="" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format("Y-m-d")}}T{{Carbon\Carbon::now()->format("H:i")}}" required><br>
                     EndDate: <input type="datetime-local" value="" id="endDate" name="endDate" required><br>
-=                    <button type="submit" style="padding: 5px; border-width: 2px;">Submit</button>
+                    <button type="submit" style="padding: 5px; border-width: 2px;">Submit</button>
 
                     <script>
                         let txtStartDate = document.getElementById("startDate");
