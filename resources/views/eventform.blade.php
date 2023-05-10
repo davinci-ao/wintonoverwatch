@@ -21,7 +21,7 @@
                         <textarea rows="4" cols="50" name="description" placeholder="Enter description here..."  class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none"></textarea><br>
                         StartDate: <input type="datetime-local" value="" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format("Y-m-d")}}T{{Carbon\Carbon::now()->format("H:i")}}" required><br>
                         EndDate: <input type="datetime-local" value="" id="endDate" name="endDate" required><br>
-                        <button type="submit" style="padding: 5px; border-width: 2px;">Submit</button>
+                        <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
 
                         <script>
                             let txtStartDate = document.getElementById("startDate");
