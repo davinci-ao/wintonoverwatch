@@ -30,9 +30,15 @@ Route::get('/eventform', function(){
     return view('eventform');
 });
 
+Route::get('/companyform', function(){
+    return view('companyform');
+});
+
 Route::get('/companyoverview', [CompanyController::class, 'getCompanies'])->name('companyoverview');
 
 Route::get('/company/{id}', [CompanyController::class, 'getDetails']);
+
+Route::post('/company/create', [CompanyController::class, 'create']);
 
 Route::get('/event/{id}', [EventController::class, 'getDetails']);
 
