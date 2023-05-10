@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
@@ -10,5 +11,11 @@ class CompanyController extends Controller
 
         return view('/company');
 
+    }
+
+    public function getCompanies(){
+        $companies = Company::all();
+
+        return view('/companyoverview')->with('companies', $companies);
     }
 }
