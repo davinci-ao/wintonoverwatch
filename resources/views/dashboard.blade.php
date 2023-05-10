@@ -17,11 +17,13 @@
                     <h1 class="text-2xl font-medium text-gray-900 dark:text-white font-extrabold">
                     {{$data->title}}
                     </h1>
-
+                    <h2 classs="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
+                    Start {{$data->startDate}}, eindigt {{$data->endDate}}
+                    </h2>
                     <p class="mt-6 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
                     {{$data->description}}
                     </p>
-    
+                    
                     <a href="/event/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white py-2 px-2 rounded-3xl transition hover:bg-sky-700">Show event</a>
 
                 </div>
