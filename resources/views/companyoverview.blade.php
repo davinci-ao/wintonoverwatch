@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-left mt-4">
-            {{ __('Evenementen') }}
+            {{ __('Bedrijven') }}
         </h2>
-        <a href="/" class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-right border-solid border-black border-2 rounded-lg p-3 bg-cyan-300">
+        <a href="/companyform" class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-right border-solid border-black border-2 rounded-lg p-3 bg-cyan-300">
             {{ __('Aanmaken Bedrijf') }}
         </a>
     </x-slot>

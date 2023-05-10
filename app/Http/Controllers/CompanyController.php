@@ -18,4 +18,14 @@ class CompanyController extends Controller
 
         return view('/companyoverview')->with('companies', $companies);
     }
+
+    public function create(Request $request){
+        $company = new Company;
+
+        $company->name = $request->name;
+
+        $company->save();
+
+        return redirect('/companyoverview');
+    }
 }
