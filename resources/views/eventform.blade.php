@@ -13,11 +13,16 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <form method="POST" action ="/event/create">
                     @csrf
-                    Name: <input type="text" name="name" required><br>
-                    Description: <input type="text" name="description" required><br>
-                    StartDate: <input type="datetime-local" name="startDate" required><br>
-                    EndDate: <input type="datetime-local" name="endDate" required><br>
-                    <button type="submit" style="padding: 5px; border-width: 2px;">Submit</button>
+                    <div class="w-4/5 m-5">
+                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Name:</p> 
+                        <input type="text" name="name" placeholder="Enter name here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none"><br>
+
+                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Description:</p> 
+                        <textarea rows="4" cols="50" name="description"placeholder="Enter description here..."  class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none"></textarea><br>
+                        StartDate: <input type="datetime-local" name="startDate" required><br>
+                        EndDate: <input type="datetime-local" name="endDate" required><br>
+                    </div>
+                    <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>                   
                 </form>
             </div>
         </div>
