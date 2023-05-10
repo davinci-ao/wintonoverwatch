@@ -15,6 +15,8 @@
                     @csrf
                     Name: <input type="text" name="name"><br>
                     Description: <input type="text" name="description"><br>
+                    StartDate: <input type="datetime-local" name="startDate"><br>
+                    EndDate: <input type="datetime-local" name="endDate"><br>
                     <button type="submit" style="padding: 5px; border-width: 2px;">Submit</button>
                 </form>
             </div>
