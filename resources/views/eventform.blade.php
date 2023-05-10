@@ -40,6 +40,7 @@
                                 });
                             }
                         </script>
+                    </div>
                 </form>
             </div>
         </div>
