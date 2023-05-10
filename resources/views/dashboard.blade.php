@@ -22,6 +22,8 @@
                     {{$data->description}}
                     </p>
 
+                    <a href="/event/{{$data->id}}">Klik</a>
+
                 </div>
                 @endforeach
                 
