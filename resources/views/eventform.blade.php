@@ -23,27 +23,26 @@
                         <label for="endDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">EndDate:</label>
                         <input type="datetime-local" id="endDate" name="endDate" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required>
                     </div>
-                   
+
                     <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
 
                     <script>
-                            let txtStartDate = document.getElementById("startDate");
-                            let txtEndDate = document.getElementById("endDate");
+                        let txtStartDate = document.getElementById("startDate");
+                        let txtEndDate = document.getElementById("endDate");
 
-                            if (txtStartDate) {
-                                txtStartDate.addEventListener("change", (event) => {
-                                    console.log(txtStartDate.value);
-                                    let date = new Date(txtStartDate.value);
-                                    console.log(date.toString())
-                                    date.setDate(date.getDate() + 3);
-                                    console.log(date.toString())
+                        if (txtStartDate) {
+                            txtStartDate.addEventListener("change", () => {
+                                console.log(txtStartDate.value);
+                                let date = new Date(txtStartDate.value);
+                                console.log(date.toString())
+                                date.setDate(date.getDate() + 3);
+                                console.log(date.toString())
 
-                                    txtEndDate.min = date.toISOString().split(".")[0];
-                                    console.log(txtEndDate.min);
-                                });
-                            }
-                        </script>
-                    </div>
+                                txtEndDate.min = date.toISOString().split(".")[0];
+                                console.log(txtEndDate.min);
+                            });
+                        }
+                    </script>
                 </form>
             </div>
         </div>
