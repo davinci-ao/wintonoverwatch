@@ -11,7 +11,7 @@
                 {{$data->title}}
                 </h2>
                 <div class="w-3/5 border-r-2 p-2 inline-block">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Descrpition:</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
                     {{$data->description}}
                     </h2>
