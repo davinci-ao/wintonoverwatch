@@ -19,7 +19,7 @@
                     </h1>
 
                     <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-1/12 inline-block">Date: </h1>
-                    <h1 class="mt-8 text-xl font-medium text-gray-900 dark:text-white w-6/12 inline-block">{{$data->startDate}} -> {{$data->endDate}}</h1>
+                    <h1 class="mt-8 text-xl font-medium text-gray-900 dark:text-white w-6/12 inline-block">{{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
                     <p class="mt-6 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
                     {{$data->description}}
                     </p>
