@@ -10,15 +10,15 @@
                 <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight mt-4 text-center">
                 {{$data->title}}
                 </h2>
-                <div class="w-3/5 border-r-2 p-2 inline-block">
+                <div class="w-7/12 border-r-2 p-2 inline-block">
                     <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
                     {{$data->description}}
                     </h2>
                 </div>
-                <div class="w-1/5 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Start date:</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">End date:</h1>
+                <div class="w-4/12 inline-block align-top">
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
                 </div>
                 @endforeach
                 <div class="md:grid lg:grid-cols-4 w-5/6 mx-auto py-2">
