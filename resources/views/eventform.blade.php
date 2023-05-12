@@ -18,13 +18,32 @@
                         <textarea rows="4" cols="50" name="description"placeholder="Enter description here..."  class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none" required></textarea><br>
                         
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top" >StartDate:</p>  
-                        <input type="datetime-local" name="startDate" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
+                        <input type="datetime-local" name="startDate" type="datetime-local" value="" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format('Y-m-d')}}T{{Carbon\Carbon::now()->format('H:i')}}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">EndDate:</p>  
                         <input type="datetime-local" name="endDate" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
                     </div>
                    
                     <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
+
+                    <script>
+                            let txtStartDate = document.getElementById("startDate");
+                            let txtEndDate = document.getElementById("endDate");
+
+                            if (txtStartDate) {
+                                txtStartDate.addEventListener("change", (event) => {
+                                    console.log(txtStartDate.value);
+                                    let date = new Date(txtStartDate.value);
+                                    console.log(date.toString())
+                                    date.setDate(date.getDate() + 3);
+                                    console.log(date.toString())
+
+                                    txtEndDate.min = date.toISOString().split(".")[0];
+                                    console.log(txtEndDate.min);
+                                });
+                            }
+                        </script>
+                    </div>
                 </form>
             </div>
         </div>

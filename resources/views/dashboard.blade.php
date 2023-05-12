@@ -17,6 +17,7 @@
                     <h1 class="text-2xl font-medium text-gray-900 dark:text-white font-extrabold">
                     {{$data->title}}
                     </h1>
+
                     <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-1/12 inline-block">Date: </h1>
                     <h1 class="mt-8 text-xl font-medium text-gray-900 dark:text-white w-3/12 inline-block">{{$data->startDate}} - {{$data->endDate}}</h2>
                     <p class="mt-6 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -27,7 +28,7 @@
 
                 </div>
                 @endforeach
-                
+
             </div>
         </div>
     </div>
