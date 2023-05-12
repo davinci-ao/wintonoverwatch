@@ -18,6 +18,8 @@ class EventController extends Controller
     public function create(Request $request){
         $event = new Event;
 
+        // $event->thumbnail = $this->storeImage($request);
+
         $event->title = $request->name;
 
         $event->description = $request->description;
@@ -40,4 +42,11 @@ class EventController extends Controller
 
         return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
     }
+
+    // private function storeImage($request){
+    //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
+    //     $request->image->extension();
+        
+    //     return $request->image->move(public_path('event-photos'), $newImageName);
+    // }
 }
