@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class EventController extends Controller
 {
@@ -45,7 +46,14 @@ class EventController extends Controller
     }
     public function update (Request $request, $id)
     {
-        dd('TEST');
+        Event::where('id', $id)->update([
+            'title' => $request->name,
+            'description' => $request->description,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate
+        ]);
+
+        return redirect('/dashboard');
     }
 
     // private function storeImage($request){

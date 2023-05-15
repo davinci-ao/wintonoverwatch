@@ -8,9 +8,8 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 w-4/5 m-auto">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg w-full m-auto">
-                <form method="POST" action ="/event/update">
+                <form method="POST" action ="/{{ $event->id }}">
                     @csrf
-                    @method('PATCH')
 
                     <div class="w-4/5 m-5">
                         <label for="name" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Name:</label> 

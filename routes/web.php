@@ -38,4 +38,4 @@ Route::post('/event/create', [EventController::class, 'create']);
 
 Route::get('/edit/{id}', [EventController::class, 'edit'])->name('eventEdit');
 
-Route::patch('/{id}', [EventController::class, 'update'])->name('eventUpdate');
+Route::post('/{id}', [EventController::class, 'update'])->name('eventUpdate');
