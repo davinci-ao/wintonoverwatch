@@ -43,6 +43,24 @@ class EventController extends Controller
         return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
     }
 
+    public function edit($id)
+    {
+        return view('eventEdit',[
+            'event' => Event::where('id', $id)->first()
+        ]);
+    }
+    public function update (Request $request, $id)
+    {
+        Event::where('id', $id)->update([
+            'title' => $request->name,
+            'description' => $request->description,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate
+        ]);
+
+        return redirect('/dashboard');
+    }
+
     // private function storeImage($request){
     //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
     //     $request->image->extension();
