@@ -15,7 +15,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 @foreach ($events as $key => $data)
                 <a href="/event/{{$data->id}}" class="block">
-                <div class="lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex">
+                <div class="lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex hover:transform hover:border-gray-600">
                     <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
                         <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="">
                     </div>    
@@ -36,7 +36,7 @@
                     @if(auth()->user()->role_id == 1)
                         <div class="bg-gray-100 px-4 py-1 flex justify-end">
                             <a href="{{ route('eventEdit', $data->id) }}" class="text-gray-700 hover:text-gray-900"> Edit </a>
-                            </div>
+                        </div>
                     @endif
                                 
                 @endforeach
