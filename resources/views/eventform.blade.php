@@ -35,7 +35,7 @@
                                 console.log(txtStartDate.value);
                                 let date = new Date(txtStartDate.value);
                                 console.log(date.toString())
-                                date.setDate(date.getDate() + 3);
+                                date.setDate(date.getDate());
                                 console.log(date.toString())
 
                                 txtEndDate.min = date.toISOString().split(".")[0];
