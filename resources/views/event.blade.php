@@ -7,9 +7,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg border-b-20">
                 @foreach ($event as $key => $data)
-                <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight mt-4 text-center">
-                {{$data->title}}
-                </h2>
+                <div class="relative w-full h-64 flex flex-col justify-end items-center" style="background-image: url('https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314_960_720.jpg'); background-size: cover; background-position: center;">
+                    <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-0 w-full h-16 flex justify-center items-center">
+                        <h1 class="text-white font-extrabold text-center text-4xl" style="text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.5);">{{$data->title}}</h1>
+                    </div>
+                </div>
                 <div class="w-7/12 border-r-2 p-2 inline-block">
                     <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
@@ -17,8 +20,9 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Location: </h1>
                 </div>
                 @endforeach
                 <div class="md:grid lg:grid-cols-4 w-5/6 mx-auto py-2">
