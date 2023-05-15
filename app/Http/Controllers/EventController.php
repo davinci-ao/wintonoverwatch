@@ -36,4 +36,21 @@ class EventController extends Controller
 
         return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
     }
+<<<<<<< Updated upstream
+=======
+
+    public function edit($id)
+    {
+        return view('eventEdit',[
+            'event' => Event::where('id', $id)->first()
+        ]);
+    }
+
+    // private function storeImage($request){
+    //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
+    //     $request->image->extension();
+        
+    //     return $request->image->move(public_path('event-photos'), $newImageName);
+    // }
+>>>>>>> Stashed changes
 }
