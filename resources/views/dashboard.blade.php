@@ -28,7 +28,9 @@
                         {{ Str::limit($data->description, 400) }}
                         </p>
                         <a href="/event/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white py-2 px-2 rounded-3xl transition hover:bg-sky-700">Show event</a>
-                        <a href="{{ route('eventEdit', $data->id) }}" class="border border-gray-500 bg-green-500 text-m text-white basis-full py-2 px-10 rounded-3xl transition hover:bg-green-700"> Edit </a>
+                        @if(auth()->user()->role_id == 1)
+                            <a href="{{ route('eventEdit', $data->id) }}" class="border border-gray-500 bg-green-500 text-m text-white basis-full py-2 px-10 rounded-3xl transition hover:bg-green-700"> Edit </a>
+                        @endif
                     </div>
                 </div>
                 @endforeach
