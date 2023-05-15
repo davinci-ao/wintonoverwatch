@@ -36,8 +36,6 @@ class EventController extends Controller
 
         return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
     }
-<<<<<<< Updated upstream
-=======
 
     public function edit($id)
     {
@@ -52,5 +50,4 @@ class EventController extends Controller
         
     //     return $request->image->move(public_path('event-photos'), $newImageName);
     // }
->>>>>>> Stashed changes
 }
