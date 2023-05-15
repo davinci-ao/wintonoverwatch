@@ -43,6 +43,10 @@ class EventController extends Controller
             'event' => Event::where('id', $id)->first()
         ]);
     }
+    public function update (Request $request, $id)
+    {
+        dd('TEST');
+    }
 
     // private function storeImage($request){
     //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
