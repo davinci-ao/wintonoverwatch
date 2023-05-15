@@ -24,7 +24,10 @@
                         <input type="datetime-local" name="startDate" type="datetime-local" value="" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format('Y-m-d')}}T{{Carbon\Carbon::now()->format('H:i')}}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
 
                         <label for="endDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">EndDate:</label>
-                        <input type="datetime-local" id="endDate" name="endDate" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required>
+                        <input type="datetime-local" id="endDate" name="endDate" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
+                        
+                        <label for="visible" class="inline-block w-6/12 text-center font-bold text-2xl align-top">Do you want this event to be visible?</label>
+                        <input type="checkbox" id="visible" name="visible" value="1" {{ old('visible') ? 'checked' : '' }} class="h-6 w-6">
                     </div>
 
                     <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>

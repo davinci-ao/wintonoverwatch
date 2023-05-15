@@ -20,6 +20,7 @@ class EventFactory extends Factory
             'title' => $this->faker->name(),
             'description' => $this->faker->text($maxNbChars = 800),
             'location' => $this->faker->name(),
+            'visible' => $this->faker->boolean,
         ];
     }
 }

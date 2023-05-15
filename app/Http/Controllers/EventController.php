@@ -30,6 +30,8 @@ class EventController extends Controller
 
         $event->endDate = $request->endDate;
 
+        $event->visible = $request->has('visible') ? 1 : 0;
+
         $event->save();
 
         return redirect('/dashboard');
@@ -58,7 +60,8 @@ class EventController extends Controller
             'location' => $request->location,
             'description' => $request->description,
             'startDate' => $request->startDate,
-            'endDate' => $request->endDate
+            'endDate' => $request->endDate,
+            'visible' => $request->visible ?? 0,
         ]);
 
         return redirect('/dashboard');
