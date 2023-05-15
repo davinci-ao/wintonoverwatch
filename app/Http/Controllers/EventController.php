@@ -22,6 +22,8 @@ class EventController extends Controller
 
         $event->title = $request->name;
 
+        $event->location = $request->location;
+
         $event->description = $request->description;
 
         $event->startDate = $request->startDate;
@@ -53,6 +55,7 @@ class EventController extends Controller
     {
         Event::where('id', $id)->update([
             'title' => $request->name,
+            'location' => $request->location,
             'description' => $request->description,
             'startDate' => $request->startDate,
             'endDate' => $request->endDate

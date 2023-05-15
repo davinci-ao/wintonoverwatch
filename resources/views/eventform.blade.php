@@ -14,6 +14,9 @@
                         <label for="name" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Name:</label> 
                         <input type="text" name="name" id="name" placeholder="Enter name here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
+                        <label for="location" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Location:</label> 
+                        <input type="text" name="location" id="location" placeholder="Enter location here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
+
                         <label for="description" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Description:</label> 
                         <textarea rows="4" cols="50" id="description" name="description" placeholder="Enter description here..."  class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none" required></textarea><br>
                         

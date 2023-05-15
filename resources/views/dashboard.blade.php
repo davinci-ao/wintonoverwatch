@@ -24,9 +24,8 @@
                         {{Str::title($data->title)}}
                         </h1>
 
-                        <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-1/12 inline-block">Date: </h1>
-                        <h1 class="mt-2 text-xl font-medium text-gray-900 dark:text-white w-6/12 inline-block">{{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('H:i d/m/Y')}}</h1><br>
-                        <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-1/12 inline-block">Location: </h1>
+                        <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">Date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('H:i d/m/Y')}}</h1>
+                        <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">Location: {{$data->location}}</h1>
                         <p class="mt-2 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
                         {{ Str::limit($data->description, 400) }}
                         </p>
