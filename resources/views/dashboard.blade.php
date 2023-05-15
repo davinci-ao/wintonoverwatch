@@ -13,21 +13,22 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 @foreach ($events as $key => $data)
                 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-                    <!-- <h1>
-                    {{$data->thumbnail}}
-                    </h1> -->
-                    <h1 class="text-2xl font-medium text-gray-900 dark:text-white font-extrabold">
-                    {{$data->title}}
-                    </h1>
+                    <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
+                        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="">
+                    </div>    
+                    <div class="w-8/12 inline-block">
+                        <h1 class="text-5xl font-bold text-gray-900 dark:text-white font-extrabold">
+                        {{Str::title($data->title)}}
+                        </h1>
 
-                    <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-1/12 inline-block">Date: </h1>
-                    <h1 class="mt-8 text-xl font-medium text-gray-900 dark:text-white w-6/12 inline-block">{{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
-                    <p class="mt-6 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
-                    {{ Str::limit($data->description, 800) }}
-                    </p>
-
-                    <a href="/event/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white py-2 px-2 rounded-3xl transition hover:bg-sky-700">Show event</a>
+                        <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-1/12 inline-block">Date: </h1>
+                        <h1 class="mt-2 text-xl font-medium text-gray-900 dark:text-white w-6/12 inline-block">{{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}}</h1>
+                        <p class="mt-2 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
+                        {{ Str::limit($data->description, 400) }}
+                        </p>
+                        <a href="/event/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white py-2 px-2 rounded-3xl transition hover:bg-sky-700">Show event</a>
                     <a href="{{ route('eventEdit', $data->id) }}" class="border border-gray-500 bg-green-500 text-m text-white basis-full py-2 px-10 rounded-3xl transition hover:bg-green-700"> Edit </a>
+                    </div>
                 </div>
                 @endforeach
 
