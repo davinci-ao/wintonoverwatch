@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->string('location');
             $table->dateTime('startDate')->nullable();
             $table->dateTime('endDate')->nullable();
             $table->timestamps();
+            $table->boolean('visible');
         });
     }
 

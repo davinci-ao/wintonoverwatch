@@ -43,3 +43,7 @@ Route::post('/company/create', [CompanyController::class, 'create']);
 Route::get('/event/{id}', [EventController::class, 'getDetails']);
 
 Route::post('/event/create', [EventController::class, 'create']);
+
+Route::get('/edit/{id}', [EventController::class, 'edit'])->name('eventEdit');
+
+Route::post('/{id}', [EventController::class, 'update'])->name('eventUpdate');

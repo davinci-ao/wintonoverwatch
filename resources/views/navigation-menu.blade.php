@@ -17,7 +17,7 @@
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('companyoverview') }}" :active="request()->routeIs('companyoverview')">
-                        {{ __('Companies') }}
+                        {{ __('Bedrijven') }}
                     </x-nav-link>
                 </div>
             </div>

@@ -18,7 +18,9 @@ class EventFactory extends Factory
     {
         return [
             'title' => $this->faker->name(),
-            'description' => $this->faker->name(),
+            'description' => $this->faker->text($maxNbChars = 800),
+            'location' => $this->faker->name(),
+            'visible' => $this->faker->boolean,
         ];
     }
 }
