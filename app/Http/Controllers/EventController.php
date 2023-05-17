@@ -22,11 +22,15 @@ class EventController extends Controller
 
         $event->title = $request->name;
 
+        $event->location = $request->location;
+
         $event->description = $request->description;
 
         $event->startDate = $request->startDate;
 
         $event->endDate = $request->endDate;
+
+        $event->visible = $request->has('visible') ? 1 : 0;
 
         $event->save();
 
@@ -41,6 +45,26 @@ class EventController extends Controller
         $company = Company::all();
 
         return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
+    }
+
+    public function edit($id)
+    {
+        return view('eventEdit',[
+            'event' => Event::where('id', $id)->first()
+        ]);
+    }
+    public function update (Request $request, $id)
+    {
+        Event::where('id', $id)->update([
+            'title' => $request->name,
+            'location' => $request->location,
+            'description' => $request->description,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate,
+            'visible' => $request->visible ?? 0,
+        ]);
+
+        return redirect('/dashboard');
     }
 
     // private function storeImage($request){
