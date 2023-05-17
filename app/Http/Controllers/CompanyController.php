@@ -19,6 +19,14 @@ class CompanyController extends Controller
         return view('/companyoverview')->with('companies', $companies);
     }
 
+    public function getList(Request $request, $id){
+        $request->session()->put("name", $id);
+
+        $companies = Company::all();
+
+        return view('/eventcompanies')->with('companies', $companies);
+    }
+
     public function create(Request $request){
         $company = new Company;
 
