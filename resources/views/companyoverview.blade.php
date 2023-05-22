@@ -3,9 +3,11 @@
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-left mt-4">
             {{ __('Bedrijven') }}
         </h2>
+        @if(auth()->user()->role_id == 1)
         <a href="/companyform" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
             {{ __('Aanmaken Bedrijf') }}
         </a>
+        @endif
     </x-slot>
 
     <div class="py-7">
