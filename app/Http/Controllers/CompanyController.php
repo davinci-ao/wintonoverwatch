@@ -23,8 +23,30 @@ class CompanyController extends Controller
         $company = new Company;
 
         $company->name = $request->name;
+        $company->short_description = $request->short_description;
+        $company->long_description = $request->long_description;
+        $company->contactpersoon = $request->contactpersoon;
+        $company->mail = $request->mail;
+        $company->telefoonnummer = $request->telefoonnummer;
+        $company->website_link = $request->website_link;
+        $company->location = $request->location;
 
         $company->save();
+
+        return redirect('/companyoverview');
+    }
+
+    public function companyedit($id)
+    {
+        return view('companyedit',[
+            'company' => Company::where('id', $id)->first()
+        ]);
+    }
+    public function update (Request $request, $id)
+    {
+        Company::where('id', $id)->update([
+            'name' => $request->name,
+        ]);
 
         return redirect('/companyoverview');
     }
