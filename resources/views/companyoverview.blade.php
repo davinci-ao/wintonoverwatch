@@ -17,6 +17,9 @@
                             <h1 class="text-2xl font-medium text-gray-900 dark:text-white font-extrabold">
                             {{$data->name}}
                             </h1>
+                            <p class="mt-2 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
+                            {{$data->short_description}}
+                            </p>
 
                             <a href="/company/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white py-2 px-2 rounded-3xl transition hover:bg-sky-700">Bedrijf Details</a>
 
