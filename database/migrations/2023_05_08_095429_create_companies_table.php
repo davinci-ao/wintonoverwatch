@@ -17,11 +17,11 @@ return new class extends Migration
             $table->timestamps();
             $table->text('short_description');
             $table->text('long_description');
-            $table->text('contactpersoon');
+            $table->text('contact');
             $table->text('mail');
             $table->text('website_link');
             $table->string('location');
-            $table->integer('telefoonnummer');
+            $table->integer('phone_number');
         });
     }
 

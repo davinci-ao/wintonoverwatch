@@ -33,9 +33,9 @@ class CompanyController extends Controller
         $company->name = $request->name;
         $company->short_description = $request->short_description;
         $company->long_description = $request->long_description;
-        $company->contactpersoon = $request->contactpersoon;
+        $company->contact = $request->contact;
         $company->mail = $request->mail;
-        $company->telefoonnummer = $request->telefoonnummer;
+        $company->phone_number = $request->phone_number;
         $company->website_link = $request->website_link;
         $company->location = $request->location;
 

@@ -18,6 +18,13 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'short_description' => $this->faker->name(),
+            'long_description' => $this->faker->text($maxNbChars = 800),
+            'contact' => $this->faker->name(),
+            'mail' => $this->faker->name(),
+            'website_link' => $this->faker->name(),
+            'location' => $this->faker->name(),
+            'phone_number' => $this->faker->boolean,
         ];
     }
 }
