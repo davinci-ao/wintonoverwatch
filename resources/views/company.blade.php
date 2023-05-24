@@ -19,9 +19,9 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Contactpersoon: {{$data->contactpersoon}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Contact: {{$data->contact}}</h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Mail: {{$data->mail}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Phone: {{$data->telefoonnummer}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Phone: {{$data->phone_number}}</h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Website: <a href="{{$data->website_link}}" target="_blank" class="text-blue-500 underline">Click</a></h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Location: {{$data->location}}</h1>
                 </div>
