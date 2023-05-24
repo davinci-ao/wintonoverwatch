@@ -14,7 +14,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 @foreach ($events as $key => $data)
-                    @if($data->visible == 1)
+                    @if($data->visible == 1 || auth()->user()->role_id == 1)
                         <a href="/event/{{$data->id}}" class="block">
                         <div class="lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex hover:transform hover:border-gray-600">
                             <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
