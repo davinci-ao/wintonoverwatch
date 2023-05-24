@@ -14,20 +14,20 @@
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Name:</p> 
                         <input type="text" name="name" placeholder="Enter name here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
-                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Samenvatting:</p> 
-                        <input type="text" name="short_description" placeholder="Enter Samenvatting here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
+                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Summary:</p> 
+                        <input type="text" name="short_description" placeholder="Enter Summary here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
                         
                         <p for="long_description" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Description:</p> 
                         <textarea rows="4" cols="50" id="long_description" name="long_description" placeholder="Enter description here..."  class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none" required></textarea><br>
 
-                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Contactpersoon:</p> 
-                        <input type="text" name="contact" placeholder="Enter contactpersoon here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
+                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Contact:</p> 
+                        <input type="text" name="contact" placeholder="Enter contact here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Mail:</p> 
                         <input type="text" name="mail" placeholder="Enter mail here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Phone:</p> 
-                        <input type="text" name="phone_number" placeholder="Enter telefoonnummer here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
+                        <input type="text" name="phone_number" placeholder="Enter phone number here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Website:</p> 
                         <input type="text" name="website_link" placeholder="Enter website here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>

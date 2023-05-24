@@ -14,20 +14,20 @@
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Name:</p> 
                         <input type="text" name="name" value="{{ $company->name }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
-                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Samenvatting:</p> 
+                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Summary:</p> 
                         <input type="text" name="short_description" value="{{ $company->short_description }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
                         
                         <label for="description" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Description:</label> 
                         <textarea rows="4" cols="50" id="long_description" name="long_description" class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none" required>{{ $company->long_description }}</textarea><br>
 
-                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Contactpersoon:</p> 
-                        <input type="text" name="contactpersoon" value="{{ $company->contactpersoon }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
+                        <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Contact:</p> 
+                        <input type="text" name="contact" value="{{ $company->contact }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Mail:</p> 
                         <input type="text" name="mail" value="{{ $company->mail }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Phone:</p> 
-                        <input type="text" name="telefoonnummer" value="{{ $company->telefoonnummer }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
+                        <input type="text" name="phone_number" value="{{ $company->phone_number }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Website:</p> 
                         <input type="text" name="website_link" value="{{ $company->website_link }}" class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
