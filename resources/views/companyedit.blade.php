@@ -8,7 +8,7 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <form method="POST" action ="/{{ $company->id }}">
+                <form method="POST" action ="/company/{{ $company->id }}">
                     @csrf
                     <div class="w-4/5 m-5">
                         <p class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Name:</p> 
