@@ -67,6 +67,25 @@ class EventController extends Controller
         return redirect('/dashboard');
     }
 
+    public function addCompanies (Request $request){
+        $data = $request->all();
+
+        $eventid = $request->session()->pull("name");
+
+        foreach(array_slice($data,1) as $info)
+        {
+            $event = new Company_Event;
+        
+            $event->company_id = $info;
+
+            $event->event_id = $eventid;
+
+            $event->save();
+        }
+
+        return redirect('/event/'. $eventid);
+    }
+
     // private function storeImage($request){
     //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
     //     $request->image->extension();

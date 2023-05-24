@@ -36,6 +36,8 @@ Route::get('/companyform', function(){
 
 Route::get('/companyoverview', [CompanyController::class, 'getCompanies'])->name('companyoverview');
 
+Route::get('/eventcompanies/{id}', [CompanyController::class, 'getList']);
+
 Route::get('/company/{id}', [CompanyController::class, 'getDetails']);
 
 Route::post('/company/create', [CompanyController::class, 'create']);
@@ -43,6 +45,8 @@ Route::post('/company/create', [CompanyController::class, 'create']);
 Route::get('/event/{id}', [EventController::class, 'getDetails']);
 
 Route::post('/event/create', [EventController::class, 'create']);
+
+Route::post('/event/company/add', [EventController::class, 'addCompanies']);
 
 Route::get('/edit/{id}', [EventController::class, 'edit'])->name('eventEdit');
 
