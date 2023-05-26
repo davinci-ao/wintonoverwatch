@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -17,8 +18,14 @@ class EventController extends Controller
 
     public function create(Request $request){
         $event = new Event;
+        
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
 
-        // $event->thumbnail = $this->storeImage($request);
+        $image_path = $request->file('image')->store('image', 'public');
+
+        $event->image = $image_path;
 
         $event->title = $request->name;
 
@@ -53,9 +60,14 @@ class EventController extends Controller
             'event' => Event::where('id', $id)->first()
         ]);
     }
+
     public function update (Request $request, $id)
-    {
+    {   
+        // $oldImage = Event::where('id', $id)->first();
+        //Storage::delete($oldImage->image);
+
         Event::where('id', $id)->update([
+            //'image' => $request->image,
             'title' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
@@ -63,6 +75,7 @@ class EventController extends Controller
             'endDate' => $request->endDate,
             'visible' => $request->visible ?? 0,
         ]);
+        
 
         return redirect('/dashboard');
     }
