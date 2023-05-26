@@ -21,7 +21,7 @@
                         <textarea rows="4" cols="50" id="description" name="description" class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none" required>{{ $event->description }}</textarea><br>
                         
                         <label for="startDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top" >StartDate:</label>  
-                        <input type="datetime-local" name="startDate" type="datetime-local" value="{{ $event->startDate }}" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format('Y-m-d')}}T{{Carbon\Carbon::now()->format('H:i')}}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
+                        <input type="datetime-local" name="startDate" value="{{ $event->startDate }}" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format('Y-m-d')}}T{{Carbon\Carbon::now()->format('H:i')}}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
 
                         <label for="endDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">EndDate:</label>
                         <input type="datetime-local" id="endDate" name="endDate" value="{{ $event->endDate }}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required>
@@ -35,19 +35,15 @@
                     <script>
                         let txtStartDate = document.getElementById("startDate");
                         let txtEndDate = document.getElementById("endDate");
+                        txtEndDate.min = txtStartDate.value;
 
-                        if (txtStartDate) {
                             txtStartDate.addEventListener("change", () => {
-                                console.log(txtStartDate.value);
-                                let date = new Date(txtStartDate.value);
-                                console.log(date.toString())
-                                date.setDate(date.getDate());
-                                console.log(date.toString())
+                            let date = new Date(txtStartDate.value);
+                            date.setDate(date.getDate());
+                            date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+                            txtEndDate.min = date.toISOString().split(".")[0];
 
-                                txtEndDate.min = date.toISOString().split(".")[0];
-                                console.log(txtEndDate.min);
-                            });
-                        }
+                        });
                     </script>
                 </form>
             </div>
