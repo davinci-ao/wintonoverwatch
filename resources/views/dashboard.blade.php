@@ -11,12 +11,12 @@
     </x-slot>
 
     <div class="py-7">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg overflow-hidden">
                 @foreach ($events as $key => $data)
                     @if($data->visible == 1 || auth()->user()->role_id == 1)
                         <a href="/event/{{$data->id}}" class="block">
-                        <div class="lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex hover:transform hover:border-gray-600">
+                        <div class=" w-full h-full lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex w-full h-full transform origin-top-left scale-100 hover:scale-105 transition-transform duration-300">
                             <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
                                 <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="" class="w-72 h-64">
                             </div>    
@@ -34,11 +34,12 @@
                             </div>
                         </div>
                         </a>
-                            @if(auth()->user()->role_id == 1)
-                                <div class="bg-gray-100 px-4 py-1 flex justify-end">
+                            <div class="bg-gray-100 px-4 py-1 flex justify-end relative z-0">
+                                @if(auth()->user()->role_id == 1)
                                     <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
-                                </div>
-                        @endif
+                                @endif
+                            </div>
+                        
                     @endif
                 @endforeach
     
