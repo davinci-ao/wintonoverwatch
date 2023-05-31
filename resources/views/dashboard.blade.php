@@ -18,11 +18,7 @@
                         <a href="/event/{{$data->id}}" class="block">
                         <div class=" w-full h-full lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex w-full h-full transform origin-top-left scale-100 hover:scale-105 transition-transform duration-300">
                             <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
-<<<<<<< Updated upstream
-                                <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="" class="w-72 h-64">
-=======
                                 <img src="{{ Storage::url($data->image) }}" alt="">
->>>>>>> Stashed changes
                             </div>    
                             <div class="w-8/12 inline-block">
                                 <h1 class="text-5xl font-bold text-gray-900 dark:text-white font-extrabold">
@@ -38,20 +34,12 @@
                             </div>
                         </div>
                         </a>
-<<<<<<< Updated upstream
-                            <div class="bg-gray-100 px-4 py-1 flex justify-end relative z-0">
-                                @if(auth()->user()->role_id == 1)
-                                    <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
-                                @endif
-                            </div>
-                        
-=======
+
                         <div class="bg-gray-100 px-4 py-2 flex justify-end">
                             @if(auth()->user()->role_id == 1)
                                     <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
                             @endif
                         </div>
->>>>>>> Stashed changes
                     @endif
                 @endforeach
     

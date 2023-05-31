@@ -20,10 +20,14 @@ class EventController extends Controller
         $event = new Event;
         
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-
-        $image_path = $request->file('image')->store('image', 'public');
+        if ($request->image != null){
+            $image_path = $request->file('image')->store('image', 'public'); 
+        } else {
+            $image_path = null;
+        }
+        
 
         $event->image = $image_path;
 
@@ -63,11 +67,24 @@ class EventController extends Controller
 
     public function update (Request $request, $id)
     {   
-        // $oldImage = Event::where('id', $id)->first();
-        //Storage::delete($oldImage->image);
+        $event = Event::where('id', $id)->first();
 
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        if (request()->hasFile('image') && request('image') != ''){
+            $oldImage = public_path('storage/'.$event->image);
+            if($event->image != null){
+                unlink($oldImage);
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+        } else {
+            $image_path = $event->image;
+        }
+        
         Event::where('id', $id)->update([
-            //'image' => $request->image,
+            'image' => $image_path,
             'title' => $request->name,
             'location' => $request->location,
             'description' => $request->description,

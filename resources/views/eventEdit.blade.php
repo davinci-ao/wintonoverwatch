@@ -29,14 +29,14 @@
                         <label for="endDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">EndDate:</label>
                         <input type="datetime-local" id="endDate" name="endDate" value="{{ $event->endDate }}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required>
                         
-                        <!-- <label class="block mb-4">
+                        <label class="block mb-4">
                         <span class="sr-only">Choose File</span>
                         <input type="file" name="image" value="{{$event->image}}" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
                         @error('image')
                         <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                         <img src="{{ Storage::url($event->image) }}" alt="" class="float-right">
-                        </label> -->
+                        </label>
                     </div>
 
                     <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
