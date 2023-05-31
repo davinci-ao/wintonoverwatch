@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -30,7 +31,17 @@ class CompanyController extends Controller
     public function create(Request $request){
         $company = new Company;
 
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $image_path = $request->file('image')->store('image', 'public');
+
+        $company->image = $image_path;
+
         $company->name = $request->name;
+        $company->languages = $request->languages;
+        $company->internship = $request->internship;
         $company->short_description = $request->short_description;
         $company->long_description = $request->long_description;
         $company->contact = $request->contact;
