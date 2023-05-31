@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -17,8 +18,18 @@ class EventController extends Controller
 
     public function create(Request $request){
         $event = new Event;
+        
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        if ($request->image != null){
+            $image_path = $request->file('image')->store('image', 'public'); 
+        } else {
+            $image_path = null;
+        }
+        
 
-        // $event->thumbnail = $this->storeImage($request);
+        $event->image = $image_path;
 
         $event->title = $request->name;
 
@@ -53,9 +64,27 @@ class EventController extends Controller
             'event' => Event::where('id', $id)->first()
         ]);
     }
+
     public function update (Request $request, $id)
-    {
+    {   
+        $event = Event::where('id', $id)->first();
+
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        if (request()->hasFile('image') && request('image') != ''){
+            $oldImage = public_path('storage/'.$event->image);
+            if($event->image != null){
+                unlink($oldImage);
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+        } else {
+            $image_path = $event->image;
+        }
+        
         Event::where('id', $id)->update([
+            'image' => $image_path,
             'title' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
@@ -63,6 +92,7 @@ class EventController extends Controller
             'endDate' => $request->endDate,
             'visible' => $request->visible ?? 0,
         ]);
+        
 
         return redirect('/dashboard');
     }
