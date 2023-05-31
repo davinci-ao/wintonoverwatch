@@ -1,9 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         @foreach ($event as $key => $data)
+        @if(auth()->user()->role_id == 1)
         <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
             {{ __('Voeg bedrijf toe') }}
         </a>
+        @endif
         @endforeach
     </x-slot>
 

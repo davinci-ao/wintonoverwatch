@@ -54,6 +54,13 @@ class CompanyController extends Controller
     {
         Company::where('id', $id)->update([
             'name' => $request->name,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+            'contact' => $request->contact,
+            'mail' => $request->mail,
+            'phone_number' => $request->phone_number,
+            'website_link' => $request->website_link,
+            'location' => $request->location,
         ]);
 
         return redirect('/companyoverview');

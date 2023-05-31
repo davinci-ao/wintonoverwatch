@@ -34,12 +34,11 @@
                             </div>
                         </div>
                         </a>
-
-                        <div class="bg-gray-100 px-4 py-2 flex justify-end">
-                            @if(auth()->user()->role_id == 1)
+                            <div class="bg-gray-100 px-4 py-1 flex justify-end relative z-0">
+                                @if(auth()->user()->role_id == 1)
                                     <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
-                            @endif
-                        </div>
+                                @endif
+                            </div>
                     @endif
                 @endforeach
     
