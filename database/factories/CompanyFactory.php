@@ -27,7 +27,6 @@ class CompanyFactory extends Factory
             'website_link' => $this->faker->name(),
             'location' => $this->faker->address(),
             'phone_number' => $this->faker->boolean,
-            'image' => 'https://cdn.pixabay.com/photo/2015/10/30/20/13/sunrise-1014712_1280.jpg', 
         ];
     }
 }
