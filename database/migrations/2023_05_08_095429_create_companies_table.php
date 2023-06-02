@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('languages');
+            $table->string('internship');
             $table->timestamps();
             $table->text('short_description');
             $table->text('long_description');
@@ -22,6 +24,7 @@ return new class extends Migration
             $table->text('website_link');
             $table->string('location');
             $table->integer('phone_number');
+            $table->string('image')->nullable();
         });
     }
 
