@@ -8,7 +8,7 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <form method="POST" action ="/company/{{ $company->id }}">
+                <form method="POST" action ="/company/{{ $company->id }}" enctype="multipart/form-data">
                     @csrf
                     <div class="w-4/5 m-5">
                         <p class="inline-block w-3/12 text-center font-bold m-5 text-2xl">Name:</p> 
@@ -36,10 +36,10 @@
                         <input type="text" name="location" value="{{ $company->location }}" class="bg-transparent mx-auto border-b-2 w-8/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-3/12 text-center font-bold m-5 text-2xl">Internship type:</p> 
-                        <input type="text" name="internship" placeholder="{{ $company->internship }}" class="bg-transparent mx-auto border-b-2 w-8/12 h-12 text-2xl outline-none" required><br>
+                        <input type="text" name="internship" value="{{ $company->internship }}" class="bg-transparent mx-auto border-b-2 w-8/12 h-12 text-2xl outline-none" required><br>
 
                         <p class="inline-block w-3/12 text-center font-bold m-5 text-2xl">Programming languages:</p> 
-                        <input type="text" name="languages" placeholder="{{ $company->languages }}" class="bg-transparent mx-auto border-b-2 w-8/12 h-12 text-2xl outline-none" required><br>
+                        <input type="text" name="languages" value="{{ $company->languages }}" class="bg-transparent mx-auto border-b-2 w-8/12 h-12 text-2xl outline-none" required><br>
 
                         <label class="block mb-4">
                         <span class="sr-only">Choose File</span>
@@ -48,7 +48,7 @@
                         @error('image')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
-                        
+
                         <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
                     </div>
                 </form>

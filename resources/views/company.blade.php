@@ -11,7 +11,7 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg border-b-20">
-                <div class="relative w-full h-64 flex flex-col justify-end items-center" style="background-image: {{ $data->image }}; background-size: cover; background-position: center;">
+                <div class="relative w-full h-64 flex flex-col items-center justify-center absolute bg-cover items-center bg-center" style="background-image:url({{ Storage::url($data->image) }})">
                     <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
                     <div class="absolute bottom-0 w-full h-16 flex justify-center items-center">
                         <h1 class="text-white font-extrabold text-center text-4xl" style="text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.5);">{{$data->name}}</h1>

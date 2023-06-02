@@ -32,10 +32,14 @@ class CompanyController extends Controller
         $company = new Company;
 
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        $image_path = $request->file('image')->store('image', 'public');
+        if ($request->image != null){
+            $image_path = $request->file('image')->store('image', 'public'); 
+        } else {
+            $image_path = null;
+        }
 
         $company->image = $image_path;
 
@@ -63,10 +67,29 @@ class CompanyController extends Controller
     }
     public function update (Request $request, $id)
     {
+     
+        $company = Company::where('id', $id)->first();
+        
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        
+
+        if (request()->hasFile('image') && request('image') != ''){
+            $oldImage = public_path('storage/'.$company->image);
+            if($company->image != null){
+                unlink($oldImage);
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+        } else {
+            $image_path = $company->image;
+        }
+
         Company::where('id', $id)->update([
             'name' => $request->name,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
+            'image' => $image_path,
             'contact' => $request->contact,
             'mail' => $request->mail,
             'phone_number' => $request->phone_number,

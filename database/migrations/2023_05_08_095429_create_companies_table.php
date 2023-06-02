@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('website_link');
             $table->string('location');
             $table->integer('phone_number');
-            $table->string('image')->nullable(false);
+            $table->string('image')->nullable();
         });
     }
 
