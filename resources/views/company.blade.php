@@ -11,9 +11,12 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg border-b-20">
-                <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight mt-4 text-center">
-                {{$data->name}}
-                </h2>
+                <div class="relative w-full h-64 flex flex-col items-center justify-center absolute bg-cover items-center bg-center" style="background-image:url({{ Storage::url($data->image) }})">
+                    <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-0 w-full h-16 flex justify-center items-center">
+                        <h1 class="text-white font-extrabold text-center text-4xl" style="text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.5);">{{$data->name}}</h1>
+                    </div>
+                </div>
                 <div class="w-7/12 border-r-2 p-2 inline-block">
                     <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
@@ -21,11 +24,15 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Contact: {{$data->contact}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Mail: {{$data->mail}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Phone: {{$data->phone_number}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Website: <a href="{{$data->website_link}}" target="_blank" class="text-blue-500 underline">Click</a></h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Location: {{$data->location}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Name: </h1> <h1 class="inline-block">{{ $data->name }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Internship type: </h1> <h1 class="inline-block">{{ $data->internship }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Programming languages: </h1> <h1 class="inline-block">{{ $data->languages }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Contact: </h1> <h1 class="inline-block">{{$data->contact}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Mail: </h1> <h1 class="inline-block">{{$data->mail}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Phone: </h1> <h1 class="inline-block">{{$data->phone_number}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Location: </h1> <h1 class="inline-block">{{$data->location}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block  ">Website: <a href="{{$data->website_link}}" target="_blank" class="text-blue-500 underline">Click</a></h1>
+                    
                 </div>
             </div>
         </div>
