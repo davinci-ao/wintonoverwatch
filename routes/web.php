@@ -14,17 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('/auth/login');
-});
+Route::get('/', [EventController::class, 'getEvents'])->name('dashboard');
 
- Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-     'verified'
- ])->group(function () {
-    Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
- });
+Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
 
 Route::get('/eventform', function(){
     return view('eventform');
