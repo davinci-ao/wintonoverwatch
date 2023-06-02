@@ -43,7 +43,7 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-        
+
         'img' => [
             'driver' => 'local',
             'root' => storage_path('image')
