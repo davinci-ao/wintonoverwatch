@@ -16,7 +16,7 @@
                 @foreach ($events as $key => $data)
                     @if($data->visible == 1 || auth()->user()->role_id == 1)
                         <a href="/event/{{$data->id}}" class="block">
-                        <div class=" w-full h-full lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 lg:flex w-full h-full transform origin-top-left scale-100 hover:scale-105 transition-transform duration-300">
+                        <div class=" w-full h-full lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent dark:border-gray-700 lg:flex w-full h-full transform origin-top-left scale-100 hover:scale-105 transition-transform duration-300">
                             <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
                                 <img src="{{ Storage::url($data->image) }}" alt="">
                             </div>    
@@ -34,10 +34,14 @@
                             </div>
                         </div>
                         </a>
-                            <div class="bg-gray-100 px-4 py-1 flex justify-end relative z-0">
+                            <div class="bg-white px-4 py-1 flex justify-end relative z-0">
                                 @if(auth()->user()->role_id == 1)
                                     <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
                                 @endif
+                            </div>
+
+                            <div class="bg-gray-100 px-4 py-1 flex justify-end relative z-0">
+                
                             </div>
                     @endif
                 @endforeach
