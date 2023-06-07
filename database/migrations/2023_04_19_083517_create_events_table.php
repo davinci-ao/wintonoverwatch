@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('endDate')->nullable();
             $table->timestamps();
             $table->boolean('visible');
+            $table->string('image')->nullable();
         });
     }
 

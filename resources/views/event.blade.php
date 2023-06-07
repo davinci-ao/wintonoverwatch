@@ -1,11 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
         @foreach ($event as $key => $data)
-        @if(auth()->user()->role_id == 1)
-        <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
-            {{ __('Voeg bedrijf toe') }}
-        </a>
-        @endif
+            @auth
+            @if(auth()->user()->role_id == 1)
+                <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
+                    {{ __('Voeg bedrijf toe') }}
+                </a>
+                @endif
+                @if(auth()->user()->role_id == 3)
+                <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700"> join event</button>
+                </form>
+                @endif  
+            @endauth
+            
         @endforeach
     </x-slot>
 
@@ -13,17 +22,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg border-b-20">
                 @foreach ($event as $key => $data)
-                <div class="relative w-full h-64 flex flex-col justify-end items-center" style="background-image: url('https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314_960_720.jpg'); background-size: cover; background-position: center;">
+                <div class="relative w-full h-64 flex flex-col justify-end items-center" style="background-image:url({{ Storage::url($data->image) }})">
                     <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
                     <div class="absolute bottom-0 w-full h-16 flex justify-center items-center">
                         <h1 class="text-white font-extrabold text-center text-4xl" style="text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.5);">{{$data->title}}</h1>
                     </div>
                 </div>
-                @if(auth()->user()->role_id == 1)
-                    <div class="bg-gray-100 px-4 py-1 flex justify-end">
-                        <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
-                    </div>
-                @endif
+                @auth
+                    @if(auth()->user()->role_id == 1)
+                        <div class="bg-gray-100 px-4 py-1 flex justify-end">
+                            <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
+                        </div>
+                    @endif
+                @endauth
                 <div class="w-7/12 border-r-2 p-2 inline-block">
                     <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">

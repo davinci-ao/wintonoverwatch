@@ -15,17 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('/auth/login');
-});
+Route::get('/', [EventController::class, 'getEvents'])->name('dashboard');
 
- Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-     'verified'
- ])->group(function () {
-    Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
- });
+Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
 
 Route::get('/eventform', function(){
     return view('eventform');
@@ -62,3 +54,5 @@ Route::post('/{id}', [EventController::class, 'update'])->name('eventUpdate');
 Route::get('/companyedit/{id}', [CompanyController::class, 'companyedit'])->name('companyedit');
 
 Route::post('/company/{id}', [CompanyController::class, 'update'])->name('companyUpdate');
+
+Route::post('/eventjoin/{id}', [EventController::class, 'join'])->name('event.join');
