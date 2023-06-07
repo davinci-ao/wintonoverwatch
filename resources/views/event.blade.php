@@ -12,8 +12,9 @@
                     @csrf
                     <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700"> join event</button>
                 </form>
-                @endif
+                @endif  
             @endauth
+            
         @endforeach
     </x-slot>
 
