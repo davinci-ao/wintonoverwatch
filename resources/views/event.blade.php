@@ -2,11 +2,13 @@
     <x-slot name="header">
         @foreach ($event as $key => $data)
             @auth
+            <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
             @if(auth()->user()->role_id == 1)
                 <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
                     {{ __('Voeg bedrijf toe') }}
                 </a>
                 @endif
+                <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
                 @if(auth()->user()->role_id == 3)
                 <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">
                     @csrf
@@ -29,6 +31,7 @@
                     </div>
                 </div>
                 @auth
+                    <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
                     @if(auth()->user()->role_id == 1)
                         <div class="bg-gray-100 px-4 py-1 flex justify-end">
                             <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
