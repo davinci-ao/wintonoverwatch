@@ -6,14 +6,30 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use App\Models\Userinfo;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class EventController extends Controller
 {
     public function getEvents(){
         $events = Event::all();
+        $user = Auth::user();
 
-        return view('/dashboard')->with('events', $events);
+        if (Userinfo::where('userid', $user->id)->exists()) {
+            return view('/dashboard')->with('events', $events);
+        }else{
+            $info = new Userinfo;
+
+            $info->description = "Your text here.";
+
+            $info->userid = $user->id;
+
+            $info->save();
+
+            return view('/dashboard')->with('events', $events);
+        }
     }
 
     public function create(Request $request){
