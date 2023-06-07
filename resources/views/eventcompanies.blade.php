@@ -12,7 +12,12 @@
                     @csrf
                     <div class="w-4/5 m-5 ml-10">
                         @foreach($companies as $key => $data)
-                        <input type="checkbox" id="{{$data->name}}" name="{{$key}}" value="{{$data->id}}" class="mb-3 mt-2">
+                        <input type="checkbox" id="{{$data->name}}" name="{{$key}}" value="{{$data->id}}" class="mb-3 mt-2"
+                            @foreach($addedCompanies as $info => $check)
+                                @if ($check->event_id == $eventid)
+                                    @if($check->company_id == $data->id) checked @endif
+                                @endif
+                            @endforeach>
                         <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" >{{$data->name}}</label><br>
                         @endforeach
 
