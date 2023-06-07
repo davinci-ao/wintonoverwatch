@@ -47,3 +47,5 @@ Route::post('/{id}', [EventController::class, 'update'])->name('eventUpdate');
 Route::get('/companyedit/{id}', [CompanyController::class, 'companyedit'])->name('companyedit');
 
 Route::post('/company/{id}', [CompanyController::class, 'update'])->name('companyUpdate');
+
+Route::post('/eventjoin/{id}', [EventController::class, 'join'])->name('event.join');

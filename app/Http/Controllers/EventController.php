@@ -116,6 +116,21 @@ class EventController extends Controller
         return redirect('/event/'. $eventid);
     }
 
+    public function join($id)
+    {
+        $event = new Company_Event;
+        
+        $userId = auth()->user()->id;
+        
+        $event->company_id = $userId;
+
+        $event->event_id = $id;
+
+        $event->save();
+
+        return redirect()->back();
+    }
+
     // private function storeImage($request){
     //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
     //     $request->image->extension();
