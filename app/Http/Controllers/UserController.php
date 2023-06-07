@@ -23,7 +23,9 @@ class UserController extends Controller
         $user = Auth::user();
         if($user->id == $id || $user->role_id == 1){
             $request->session()->put("userid", $id);
-            return view('userprofileform');
+            return view('userprofileform',[
+                'data' => Userinfo::where('id', $id)->first()
+            ]);
         }else{
             return back();
         }
