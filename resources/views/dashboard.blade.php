@@ -23,8 +23,6 @@
 
                                 <img src="{{ Storage::url($data->image) }}" class="w-72 h-64" alt="">
 
-                                <img src="{{ Storage::url($data->image) }}" alt="">
-
                             </div>    
                             <div class="w-8/12 inline-block">
                                 <h1 class="text-5xl font-bold text-gray-900 dark:text-white font-extrabold">
