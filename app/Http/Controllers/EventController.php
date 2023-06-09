@@ -15,27 +15,40 @@ class EventController extends Controller
 {
     public function getEvents(){
         $events = Event::all();
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        if (Userinfo::where('userid', $user->id)->exists()) {
+        // if (Userinfo::where('userid', $user->id)->exists()) {
+        //     return view('/dashboard')->with('events', $events);
+        // }else{
+        //     $info = new Userinfo;
+
+        //     $info->description = "Your text here.";
+
+        //     $info->userid = $user->id;
+
+        //     $info->save();
+
             return view('/dashboard')->with('events', $events);
-        }else{
-            $info = new Userinfo;
-
-            $info->description = "Your text here.";
-
-            $info->userid = $user->id;
-
-            $info->save();
-
-            return view('/dashboard')->with('events', $events);
-        }
+        
     }
 
     public function create(Request $request){
         $event = new Event;
 
         // $event->thumbnail = $this->storeImage($request);
+
+
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        if ($request->image != null){
+            $image_path = $request->file('image')->store('image', 'public'); 
+        } else {
+            $image_path = "image/MicrosoftTeams-image.png";
+        }
+        
+
+        $event->image = $image_path;
 
         $event->title = $request->name;
 
@@ -72,7 +85,24 @@ class EventController extends Controller
     }
     public function update (Request $request, $id)
     {
+        $event = Event::where('id', $id)->first();
+
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        if (request()->hasFile('image') && request('image') != ''){
+            $oldImage = public_path('storage/'.$event->image);
+            if($event->image != null){
+                unlink($oldImage);
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+        } else {
+            $image_path = $event->image;
+        }
+
         Event::where('id', $id)->update([
+            'image' => $image_path,
             'title' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
