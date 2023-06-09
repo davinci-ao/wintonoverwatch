@@ -1,13 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
         @foreach ($event as $key => $data)
-            @auth
+            @auth 
             @if(auth()->user()->role_id == 1)
                 <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
                     {{ __('Voeg bedrijf toe') }}
                 </a>
                 @endif
+                @if(auth()->user()->role_id == 3)
+                <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700"> join event</button>
+                </form>
+                @endif  
             @endauth
+            
         @endforeach
     </x-slot>
 
