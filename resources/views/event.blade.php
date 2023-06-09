@@ -60,7 +60,9 @@
                                  <h1 class="my-4 text-l font-extrabold font-medium text-gray-900 dark:text-white">
                                     {{$data->name}}
                                 </h1>
+                                @auth
                                 <a href="/company/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white basis-full py-2 px-20 rounded-3xl transition hover:bg-sky-700">Info</a>
+                                @endauth
                             </div>
                            
                         </div>

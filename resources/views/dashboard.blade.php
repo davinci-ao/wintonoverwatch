@@ -20,10 +20,10 @@
                         <a href="/event/{{$data->id}}" class="block">
                         <div class=" w-full h-full lg:p-6 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent dark:border-gray-700 lg:flex w-full h-full transform origin-top-left scale-100 hover:scale-105 transition-transform duration-300">
                             <div class="w-3/12 inline-block mr-5 justify-items-start float-left">
-
+                                
                                 <img src="{{ Storage::url($data->image) }}" class="w-72 h-64" alt="">
 
-                                <img src="{{ Storage::url($data->image) }}" alt="">
+                           
 
                             </div>    
                             <div class="w-8/12 inline-block">
