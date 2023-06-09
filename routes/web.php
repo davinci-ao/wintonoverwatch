@@ -1,6 +1,7 @@
 <?php
 use App\http\Controllers\EventController;
 use App\http\Controllers\CompanyController;
+use App\http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,12 @@ Route::get('/eventform', function(){
 Route::get('/companyform', function(){
     return view('companyform');
 });
+
+Route::get('/profile/{id}', [UserController::class, 'getUser']);
+
+Route::get('/profile/edit/{id}', [UserController::class, 'viewForm']);
+
+Route::post('/profile/update', [UserController::class, 'updateUser']);
 
 Route::get('/companyoverview', [CompanyController::class, 'getCompanies'])->name('companyoverview');
 

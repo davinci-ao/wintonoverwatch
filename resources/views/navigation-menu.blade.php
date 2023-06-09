@@ -110,6 +110,12 @@
                                 {{ __('Manage Account') }}
                             </div>
 
+                            <x-dropdown-link href="/profile/{{ Auth::user()->id }}">
+                                {{ __('Details') }}
+                            </x-dropdown-link>
+
+                            <div class="border-t border-gray-200 dark:border-gray-600"></div>
+
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>

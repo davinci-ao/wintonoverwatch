@@ -6,30 +6,36 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use App\Models\Userinfo;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class EventController extends Controller
 {
     public function getEvents(){
         $events = Event::all();
+        $user = Auth::user();
 
-        return view('/dashboard')->with('events', $events);
+        if (Userinfo::where('userid', $user->id)->exists()) {
+            return view('/dashboard')->with('events', $events);
+        }else{
+            $info = new Userinfo;
+
+            $info->description = "Your text here.";
+
+            $info->userid = $user->id;
+
+            $info->save();
+
+            return view('/dashboard')->with('events', $events);
+        }
     }
 
     public function create(Request $request){
         $event = new Event;
-        
-        $this->validate($request, [
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-        if ($request->image != null){
-            $image_path = $request->file('image')->store('image', 'public'); 
-        } else {
-            $image_path = null;
-        }
-        
 
-        $event->image = $image_path;
+        // $event->thumbnail = $this->storeImage($request);
 
         $event->title = $request->name;
 
@@ -64,27 +70,9 @@ class EventController extends Controller
             'event' => Event::where('id', $id)->first()
         ]);
     }
-
     public function update (Request $request, $id)
-    {   
-        $event = Event::where('id', $id)->first();
-
-        $this->validate($request, [
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-
-        if (request()->hasFile('image') && request('image') != ''){
-            $oldImage = public_path('storage/'.$event->image);
-            if($event->image != null){
-                unlink($oldImage);
-            }
-            $image_path = $request->file('image')->store('image', 'public');
-        } else {
-            $image_path = $event->image;
-        }
-        
+    {
         Event::where('id', $id)->update([
-            'image' => $image_path,
             'title' => $request->name,
             'location' => $request->location,
             'description' => $request->description,
@@ -92,29 +80,32 @@ class EventController extends Controller
             'endDate' => $request->endDate,
             'visible' => $request->visible ?? 0,
         ]);
-        
 
         return redirect('/dashboard');
     }
 
-    public function addCompanies (Request $request){
-        $data = $request->all();
 
+    public function addCompanies(Request $request)
+    {
+        $data = $request->all(); // Dit is alle data die word door gepost van de form.
         $eventid = $request->session()->pull("name");
+        $oldItems = Company_Event::where('event_id', $eventid)->get();
 
-        foreach(array_slice($data,1) as $info)
-        {
-            $event = new Company_Event;
-        
-            $event->company_id = $info;
-
-            $event->event_id = $eventid;
-
-            $event->save();
+        foreach ($oldItems as $key=>$keyslot){ 
+            Company_Event::where('id',$keyslot->id)->delete(); // Hier worden de oude items gedelete.
         }
-
-        return redirect('/event/'. $eventid);
+        foreach (array_slice($data, 1) as $info) {
+            $newEventCompanyId = $info;
+            $event = new Company_Event;
+            $event->company_id = $newEventCompanyId;
+            $event->event_id = $eventid;
+            $event->save(); // Hier worden de nieuwe items toegevoegd.
+        }
+    
+        return redirect('/event/' . $eventid);
     }
+    
+
 
     public function join($id)
     {

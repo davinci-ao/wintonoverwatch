@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Company_Event;
 use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
@@ -25,7 +26,9 @@ class CompanyController extends Controller
 
         $companies = Company::all();
 
-        return view('/eventcompanies')->with('companies', $companies);
+        $addedCompanies = Company_Event::all();
+
+        return view('/eventcompanies')->with(['companies'=> $companies, 'eventid' =>$id, "addedCompanies" =>$addedCompanies ]);
     }
 
     public function create(Request $request){
