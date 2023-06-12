@@ -14,7 +14,10 @@ class UserController extends Controller
         $user = Auth::user();
 
         if (Userinfo::where('userid', $user->id)->exists()) {
-            return view('/dashboard')->with('events', $events);
+            return view('userprofile',[
+                'data' => Userinfo::where('userid', $id)->first(),
+                'info' => User::where('id', $id)->first()
+            ]);
         }else{
             $info = new Userinfo;
 
@@ -24,7 +27,7 @@ class UserController extends Controller
 
             $info->save();
         }
-        
+      
         return view('userprofile',[
             'data' => Userinfo::where('userid', $id)->first(),
             'info' => User::where('id', $id)->first()
