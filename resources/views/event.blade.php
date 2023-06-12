@@ -45,9 +45,24 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Location: {{$data->location}}</h1>
+                    <h1 class="text-lg font-extrabold ml-5 mt-5 w-3/12 inline-block">
+                        Start date: 
+                    </h1>
+                    <h1 class="text-lg font-extrabold w-6/12 inline-block">
+                    {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}
+                    </h1><br>
+                    <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
+                        End date: 
+                    </h1>
+                    <h1 class="text-lg font-extrabold w-6/12 inline-block">
+                        {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}
+                    </h1>
+                    <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
+                        Location: 
+                    </h1>
+                    <h1 class="text-lg font-extrabold w-6/12 inline-block">
+                    {{$data->location}}
+                    </h1>
                 </div>
                 @endforeach
                 <div class="w-full mx-auto py-2 border-t border-grey-500">
