@@ -11,6 +11,20 @@ class UserController extends Controller
 {
     public function getUser($id)
     {
+        $user = Auth::user();
+
+        if (Userinfo::where('userid', $user->id)->exists()) {
+            return view('/dashboard')->with('events', $events);
+        }else{
+            $info = new Userinfo;
+
+            $info->description = "Your text here.";
+
+            $info->userid = $user->id;
+
+            $info->save();
+        }
+        
         return view('userprofile',[
             'data' => Userinfo::where('userid', $id)->first(),
             'info' => User::where('id', $id)->first()
