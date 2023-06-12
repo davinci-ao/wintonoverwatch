@@ -31,7 +31,7 @@
                                 {{Str::title($data->title)}}
                                 </h1>
 
-                                <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">Date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('H:i d/m/Y')}}</h1>
+                                <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">Date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y H:i')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y H:i')}}</h1>
                                 <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">Location: {{$data->location}}</h1>
                                 <p class="mt-2 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
                                 {{$data->description}}
