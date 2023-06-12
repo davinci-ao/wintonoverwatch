@@ -45,25 +45,95 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
+                    <h1 class="text-lg font-extrabold ml-5 mt-5 w-3/12 inline-block">
+                        Start date: 
+                    </h1>
+                    <h1 class="text-lg font-extrabold w-6/12 inline-block">
+                    {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}
+                    </h1><br>
+                    <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
+                        End date: 
+                    </h1>
+                    <h1 class="text-lg font-extrabold w-6/12 inline-block">
+                        {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}
+                    </h1>
+                    <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
+                        Location: 
+                    </h1>
+                    <h1 class="text-lg font-extrabold w-6/12 inline-block">
+                    {{$data->location}}
+                    </h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y - H:i')}}</h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y - H:i')}}</h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5">Location: {{$data->location}}</h1>
                 </div>
                 @endforeach
-                <div class="md:grid lg:grid-cols-4 w-5/6 mx-auto py-2">
+                <div class="w-full mx-auto py-2 border-t border-grey-500">
+                    <div class="border-b border-grey-500 text-center w-full">
+                        <div class="w-3/12 border-r border-grey-500 inline-block">
+                            <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                Bedrijfsnaam:
+                            </h1>                               
+                        </div>
+                        <div class="w-6/12 border-r border-grey-500 inline-block">
+                            <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                Wat wij komen doen:
+                            </h1>
+                        </div>
+                        <div class="w-2/12 inline-block">
+                            <h1>
+                            @if(auth()->user()->role_id == 1)
+                                <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                    edit
+                                </h1>
+                            @endif
+                            @if(auth()->user()->role_id == 2)
+                                <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                    Inschrijven
+                                </h1>
+                            @endif
+                            </h1>
+                        </div>
+                    </div>
                     @foreach ($select as $key => $info)
                     @foreach ($company as $keys => $data)
                         @if ($data->id == $info->company_id)
-                        <div class=" inline-block p-3 border-2 border-black text-center rounded-3xl h-84 w-60">
-                            <img src="https://cdn.pixabay.com/photo/2023/01/18/16/45/dinosaur-7727356_960_720.png" alt="" class="max-w-2xs rounded-lg">
-                            <div class="static relative bottom-0 inline-block align-bottom">
-                                 <h1 class="my-4 text-l font-extrabold font-medium text-gray-900 dark:text-white">
-                                    {{$data->name}}
-                                </h1>
+                        <div class="border-b border-grey-500 text-center w-full">
+                        <div class="w-3/12 border-r border-grey-500 inline-block">
+                            <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
                                 @auth
-                                <a href="/company/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white basis-full py-2 px-20 rounded-3xl transition hover:bg-sky-700">Info</a>
+                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
+                                        <a href="/company/{{$data->id}}" class="my-1 text-l font-extrabold text-gray-900 dark:text-white">{{$data->name}}</a>
+                                    @endif
+                                    @if (auth()->user()->role_id == 2)
+                                        <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                            {{$data->name}}
+                                        </h1>   
+                                    @endif
                                 @endauth
-                            </div>
+                                @guest
+                                    <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                        {{$data->name}}
+                                    </h1>   
+                                @endguest
+                            </h1>                               
+                        </div>
+                        <div class="w-6/12 border-r border-grey-500 inline-block">
+                            <h1>
+                                Wat wij komen doen:
+                            </h1>
+                        </div>
+                        <div class="w-2/12 inline-block">
+                            <h1>
+                                    
+                            </h1>
+                        </div>                     
+                    
+                            <!-- <div class="w-4/12 border-l border-grey-500">
+                                @auth
+                                    	<a href="/company/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white basis-full py-2 px-16 rounded-3xl transition hover:bg-sky-700">Info</a>
+                                @endauth
+                            </div> -->
                            
                         </div>
                         @endif
