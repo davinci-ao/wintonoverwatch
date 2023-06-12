@@ -41,7 +41,7 @@ class CompanyController extends Controller
         if ($request->image != null){
             $image_path = $request->file('image')->store('image', 'public'); 
         } else {
-            $image_path = null;
+            $image_path = "image/MicrosoftTeams-image.png";
         }
 
         $company->image = $image_path;
