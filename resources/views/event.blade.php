@@ -9,7 +9,7 @@
                 </a>
                 @endif
                 <!-- checks if the user is an admin or regular user and checks if the user has joined the event -->
-                @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
+                @if(auth()->user()->role_id == 2)
                     {{$present = true}}
                     @foreach($participants as $number => $student)
                         @if($student->user_id == auth()->user()->id && $student->event_id == $data->id)
