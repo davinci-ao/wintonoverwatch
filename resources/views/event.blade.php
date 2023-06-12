@@ -24,7 +24,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg border-b-20">
                 @foreach ($event as $key => $data)
-                <div class="relative w-full h-64 flex flex-col justify-end items-center" style="background-image:url({{ Storage::url($data->image) }})">
+                <div class="relative w-full h-64 flex flex-col items-center justify-center absolute bg-cover items-center bg-center" style="background-image:url({{ Storage::url($data->image) }})">
                     <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
                     <div class="absolute bottom-0 w-full h-16 flex justify-center items-center">
                         <h1 class="text-white font-extrabold text-center text-4xl" style="text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.5);">{{$data->title}}</h1>
@@ -63,6 +63,9 @@
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                     {{$data->location}}
                     </h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y - H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y - H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Location: {{$data->location}}</h1>
                 </div>
                 @endforeach
                 <div class="w-full mx-auto py-2 border-t border-grey-500">
