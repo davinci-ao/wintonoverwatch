@@ -8,6 +8,24 @@
                     {{ __('Voeg bedrijf toe') }}
                 </a>
                 @endif
+                <!-- checks if the user is an admin or regular user and checks if the user has joined the event -->
+                @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
+                    {{$present = true}}
+                    @foreach($participants as $number => $student)
+                        @if($student->user_id == auth()->user()->id && $student->event_id == $data->id)
+                            {{$present = false}}
+                        @endif
+                    @endforeach
+                    @if($present == true)
+                        <a href="/event/signup/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
+                            {{ __('Inschrijven') }}
+                        </a>
+                    @elseif($present == false)
+                        <a href="/event/signout/{{$data->id}}" class="uppercase bg-red-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-red-600">
+                            {{ __('Uitschrijven') }}
+                        </a>
+                    @endif
+                @endif
                 <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
                 @if(auth()->user()->role_id == 3)
                 <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">

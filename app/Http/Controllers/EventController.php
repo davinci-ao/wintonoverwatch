@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Student_Event;
 use App\Models\Company;
 use App\Models\Company_Event;
 use App\Models\Userinfo;
@@ -74,7 +75,9 @@ class EventController extends Controller
 
         $company = Company::all();
 
-        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
+        $participants = Student_Event::all();
+
+        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants]);
     }
 
     public function edit($id)
@@ -150,6 +153,27 @@ class EventController extends Controller
         $event->save();
 
         return redirect()->back();
+    }
+
+    public function signup($id)
+    {
+        $signup = new Student_Event;
+
+        $signup->user_id = auth()->user()->id;
+        $signup->event_id = $id;
+
+        $signup->save();
+
+        return redirect('/event/'. $id);
+    }
+
+    public function signout($id)
+    {
+        Student_Event::where('user_id', auth()->user()->id)
+                            ->where('event_id', $id)
+                            ->delete();
+
+        return redirect('/event/'. $id);
     }
 
     // private function storeImage($request){
