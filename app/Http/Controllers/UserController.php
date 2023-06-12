@@ -27,7 +27,7 @@ class UserController extends Controller
 
             $info->save();
         }
-
+      
         return view('userprofile',[
             'data' => Userinfo::where('userid', $id)->first(),
             'info' => User::where('id', $id)->first()
