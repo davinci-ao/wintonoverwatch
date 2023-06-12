@@ -45,8 +45,8 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y - H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y - H:i')}}</h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5">Location: {{$data->location}}</h1>
                 </div>
                 @endforeach
