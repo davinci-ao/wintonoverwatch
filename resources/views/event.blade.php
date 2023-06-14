@@ -1,12 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
         @foreach ($event as $key => $data)
+            @php
+                $studentnumber = 0;
+            @endphp
+            @foreach($participants as $number => $student)
+                @php
+                    $studentnumber = $studentnumber + 1;
+                @endphp
+            @endforeach
             @auth
             <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
             @if(auth()->user()->role_id == 1)
                 <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
                     {{ __('Voeg bedrijf toe') }}
                 </a>
+                <a href="/eventparticipants/{{$data->id}}" class="border-2 p-2 border-black rounded-2xl font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-left mt-2">Deelnemers: {{$studentnumber}}</a>
             @endif
                 <!-- checks if the user is an admin or regular user and checks if the user has joined the event -->
                 @if(auth()->user()->role_id == 2)
@@ -179,7 +188,6 @@
                                                     </form>
                                                 @endif
                                             @endif
-                                        @endif
                                     @endauth
                                     </div>                                               
                                 </div>

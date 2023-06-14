@@ -64,3 +64,5 @@ Route::get('/event/signout/{id}', [EventController::class, 'signout']);
 Route::post('/event/signupToCompany', [EventController::class, 'signupToCompanyOnEvent']);
 
 Route::post('/event/signoutOnCompany', [EventController::class, 'signoutOnCompanyOnEvent']);
+
+Route::get('/eventparticipants/{id}', [EventController::class, 'getParticipants']);

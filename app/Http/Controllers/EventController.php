@@ -194,6 +194,19 @@ class EventController extends Controller
         return redirect('/event/'. $request->eventId);
     }
 
+    public function getParticipants($id)
+    {
+        $select = Student_Event::where('event_id', $id)->get();
+
+        $selectcompany = Student_Event_Company::where('event_id', $id)->get();
+
+        $companies = Company::all();
+
+        $participants = User::all();
+
+        return view('/eventparticipants')->with(['select' => $select, 'participants' => $participants, 'companies' => $companies, 'selectcompany' => $selectcompany]);
+    }
+
     // private function storeImage($request){
     //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
     //     $request->image->extension();
