@@ -163,6 +163,9 @@ class EventController extends Controller
         Student_Event::where('user_id', auth()->user()->id)
                             ->where('event_id', $id)
                             ->delete();
+        Student_Event_Company::where('user_id', auth()->user()->id)
+                            ->where('event_id', $id)
+                            ->delete();
 
         return redirect('/event/'. $id);
     }

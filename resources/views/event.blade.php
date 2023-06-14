@@ -161,20 +161,22 @@
                                                 
                                             @endif
                                         @endforeach
-                                        @if($inCompany == true)
-                                            <form method="POST" action="/event/signupToCompany">
-                                                @csrf
-                                                <input type="hidden" name="companyId" value="{{ $info->company_id }}">
-                                                <input type="hidden" name="eventId" value="{{ $info->event_id }}">
-                                                <button type="submit">Inschrijven</button>
-                                            </form>
-                                        @elseif($inCompany == false)
-                                            <form method="POST" action="/event/signoutOnCompany">
-                                                @csrf
-                                                <input type="hidden" name="companyId" value="{{ $info->company_id }}">
-                                                <input type="hidden" name="eventId" value="{{ $info->event_id }}">
-                                                <button type="submit">Uitschrijven</button>
-                                            </form>
+                                        @if ($present != true)
+                                            @if($inCompany == true)
+                                                <form method="POST" action="/event/signupToCompany">
+                                                    @csrf
+                                                    <input type="hidden" name="companyId" value="{{ $info->company_id }}">
+                                                    <input type="hidden" name="eventId" value="{{ $info->event_id }}">
+                                                    <button type="submit">Inschrijven</button>
+                                                </form>
+                                            @elseif($inCompany == false)
+                                                <form method="POST" action="/event/signoutOnCompany">
+                                                    @csrf
+                                                    <input type="hidden" name="companyId" value="{{ $info->company_id }}">
+                                                    <input type="hidden" name="eventId" value="{{ $info->event_id }}">
+                                                    <button type="submit">Uitschrijven</button>
+                                                </form>
+                                            @endif
                                         @endif
                                     @endauth
                                     </div>                                               
