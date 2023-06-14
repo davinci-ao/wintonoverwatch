@@ -60,3 +60,7 @@ Route::post('/eventjoin/{id}', [EventController::class, 'join'])->name('event.jo
 Route::get('/event/signup/{id}', [EventController::class, 'signup']);
 
 Route::get('/event/signout/{id}', [EventController::class, 'signout']);
+
+Route::post('/event/signupToCompany', [EventController::class, 'signupToCompanyOnEvent']);
+
+Route::post('/event/signoutOnCompany', [EventController::class, 'signoutOnCompanyOnEvent']);

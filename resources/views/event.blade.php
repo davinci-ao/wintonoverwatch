@@ -7,13 +7,18 @@
                 <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
                     {{ __('Voeg bedrijf toe') }}
                 </a>
-                @endif
+            @endif
                 <!-- checks if the user is an admin or regular user and checks if the user has joined the event -->
                 @if(auth()->user()->role_id == 2)
-                    {{$present = true}}
+                @php 
+                    $present = true
+                @endphp
                     @foreach($participants as $number => $student)
                         @if($student->user_id == auth()->user()->id && $student->event_id == $data->id)
-                            {{$present = false}}
+                        @php
+                            $present = false
+                        @endphp
+                            
                         @endif
                     @endforeach
                     @if($present == true)
@@ -41,7 +46,7 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg border-b-20">
-                @foreach ($event as $key => $data)
+            @foreach ($event as $key => $data)
                 <div class="relative w-full h-64 flex flex-col items-center justify-center absolute bg-cover items-center bg-center" style="background-image:url({{ Storage::url($data->image) }})">
                     <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
                     <div class="absolute bottom-0 w-full h-16 flex justify-center items-center">
@@ -81,82 +86,103 @@
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                     {{$data->location}}
                     </h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y - H:i')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y - H:i')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Location: {{$data->location}}</h1>
                 </div>
                 @endforeach
-                <div class="w-full mx-auto py-2 border-t border-grey-500">
-                    <div class="border-b border-grey-500 text-center w-full">
-                        <div class="w-3/12 border-r border-grey-500 inline-block">
+                <div class="w-full mx-auto py-2 ">
+                    <div class="border-b border-grey-500 mt-5 pl-4 w-full">
+                        <div class="w-3/12 inline-block">
                             <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
                                 Bedrijfsnaam:
                             </h1>                               
                         </div>
-                        <div class="w-6/12 border-r border-grey-500 inline-block">
+                        <div class="w-7/12 inline-block">
                             <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
                                 Wat wij komen doen:
                             </h1>
                         </div>
-                        <div class="w-2/12 inline-block">
+                        <div class="w-1/12 inline-block">
                             <h1>
-                            @if(auth()->user()->role_id == 1)
-                                <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                    edit
-                                </h1>
-                            @endif
-                            @if(auth()->user()->role_id == 2)
-                                <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                    Inschrijven
-                                </h1>
-                            @endif
+                                @auth
+                                    @if(auth()->user()->role_id == 1)
+                                        <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                            edit
+                                        </h1>
+                                    @endif
+                                    @if(auth()->user()->role_id == 2)
+                                        <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                            Inschrijven
+                                        </h1>
+                                    @endif
+                                @endauth
                             </h1>
                         </div>
                     </div>
                     @foreach ($select as $key => $info)
-                    @foreach ($company as $keys => $data)
-                        @if ($data->id == $info->company_id)
-                        <div class="border-b border-grey-500 text-center w-full">
-                        <div class="w-3/12 border-r border-grey-500 inline-block">
-                            <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                @auth
-                                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
-                                        <a href="/company/{{$data->id}}" class="my-1 text-l font-extrabold text-gray-900 dark:text-white">{{$data->name}}</a>
-                                    @endif
-                                    @if (auth()->user()->role_id == 2)
-                                        <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                            {{$data->name}}
-                                        </h1>   
-                                    @endif
-                                @endauth
-                                @guest
+                        @foreach ($company as $keys => $data)
+                                            @php 
+                                                $inCompany = true
+                                            @endphp
+                            @if ($data->id == $info->company_id)
+                            <div class="pl-4 w-full">
+                                <div class="w-3/12 inline-block">
                                     <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                        {{$data->name}}
-                                    </h1>   
-                                @endguest
-                            </h1>                               
-                        </div>
-                        <div class="w-6/12 border-r border-grey-500 inline-block">
-                            <h1>
-                                Wat wij komen doen:
-                            </h1>
-                        </div>
-                        <div class="w-2/12 inline-block">
-                            <h1>
-                                    
-                            </h1>
-                        </div>                     
-                    
-                            <!-- <div class="w-4/12 border-l border-grey-500">
-                                @auth
-                                    	<a href="/company/{{$data->id}}" class="border border-gray-500 bg-blue-500 text-m text-white basis-full py-2 px-16 rounded-3xl transition hover:bg-sky-700">Info</a>
-                                @endauth
-                            </div> -->
-                           
-                        </div>
-                        @endif
+                                        @auth
+                                            @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
+                                                <a href="/company/{{$data->id}}" class="my-1 text-l font-extrabold text-gray-900 dark:text-white">{{$data->name}}</a>
+                                            @endif
+                                            @if (auth()->user()->role_id == 2)
+                                                <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                                    {{$data->name}}
+                                                </h1>   
+                                            @endif
+                                        @endauth
+                                        @guest
+                                            <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                                {{$data->name}}
+                                            </h1>   
+                                        @endguest
+                                    </h1>                               
+                                </div>
+                                <div class="w-7/12 inline-block">
+                                    <h1>
+                                        Wat wij komen doen:
+                                    </h1>
+                                </div>
+                                <div class="w-1/12 inline-block">
+                                    @auth
+                                    @php 
+                                        $inCompany = true
+                                    @endphp
+                                        @foreach($business as $businessKey => $businessData)
+                                            @if($businessData->user_id == auth()->user()->id && $businessData->event_id == $info->event_id && $businessData->company_id == $info->company_id)
+                                            @php
+                                                $inCompany = false
+                                            @endphp
+                                                
+                                            @endif
+                                        @endforeach
+                                        @if($inCompany == true)
+                                            <form method="POST" action="/event/signupToCompany">
+                                                @csrf
+                                                <input type="hidden" name="companyId" value="{{ $info->company_id }}">
+                                                <input type="hidden" name="eventId" value="{{ $info->event_id }}">
+                                                <button type="submit">Inschrijven</button>
+                                            </form>
+                                        @elseif($inCompany == false)
+                                            <form method="POST" action="/event/signoutOnCompany">
+                                                @csrf
+                                                <input type="hidden" name="companyId" value="{{ $info->company_id }}">
+                                                <input type="hidden" name="eventId" value="{{ $info->event_id }}">
+                                                <button type="submit">Uitschrijven</button>
+                                            </form>
+                                        @endif
+                                    @endauth
+                                    </div>                                               
+                                </div>
+                            @endif
+                            
+                        @endforeach
                     @endforeach
-                @endforeach
                 </div>                
             </div>
         </div>
