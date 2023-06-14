@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Student_Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use App\Models\Student_Event_Company;
 use App\Models\Userinfo;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -65,7 +66,9 @@ class EventController extends Controller
 
         $participants = Student_Event::all();
 
-        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants]);
+        $studentEventCompanies = Student_Event_Company::all();
+
+        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies]);
     }
 
     public function edit($id)
@@ -154,14 +157,41 @@ class EventController extends Controller
 
         return redirect('/event/'. $id);
     }
-
+    
     public function signout($id)
     {
         Student_Event::where('user_id', auth()->user()->id)
                             ->where('event_id', $id)
                             ->delete();
+        Student_Event_Company::where('user_id', auth()->user()->id)
+                            ->where('event_id', $id)
+                            ->delete();
 
         return redirect('/event/'. $id);
+    }
+
+    public function signupToCompanyOnEvent (Request $request)
+    {
+    
+        $signup = new Student_Event_Company;
+       
+        $signup->user_id = auth()->user()->id;
+        $signup->event_id = $request->eventId;
+        $signup->company_id = $request->companyId;
+
+        $signup->save();
+
+        return redirect('/event/'. $request->eventId);
+    }
+
+    public function signoutOnCompanyOnEvent(Request $request)
+    {
+        Student_Event_Company::where('user_id', auth()->user()->id)
+                            ->where('event_id', $request->eventId)
+                            ->where('company_id', $request->companyId)
+                            ->delete();
+
+        return redirect('/event/'. $request->eventId);
     }
 
     // private function storeImage($request){
