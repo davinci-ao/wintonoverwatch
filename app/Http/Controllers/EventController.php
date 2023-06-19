@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Student_Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use App\Models\Student_Event_Company;
 use App\Models\Userinfo;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -15,20 +17,8 @@ class EventController extends Controller
 {
     public function getEvents(){
         $events = Event::all();
-        // $user = Auth::user();
 
-        // if (Userinfo::where('userid', $user->id)->exists()) {
-        //     return view('/dashboard')->with('events', $events);
-        // }else{
-        //     $info = new Userinfo;
-
-        //     $info->description = "Your text here.";
-
-        //     $info->userid = $user->id;
-
-        //     $info->save();
-
-            return view('/dashboard')->with('events', $events);
+        return view('/dashboard')->with('events', $events);
         
     }
 
@@ -74,7 +64,11 @@ class EventController extends Controller
 
         $company = Company::all();
 
-        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company]);
+        $participants = Student_Event::all();
+
+        $studentEventCompanies = Student_Event_Company::all();
+
+        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies]);
     }
 
     public function edit($id)
@@ -152,6 +146,67 @@ class EventController extends Controller
         $event->save();
 
         return redirect()->back();
+    }
+
+    public function signup($id)
+    {
+        $signup = new Student_Event;
+
+        $signup->user_id = auth()->user()->id;
+        $signup->event_id = $id;
+
+        $signup->save();
+
+        return redirect('/event/'. $id);
+    }
+    
+    public function signout($id)
+    {
+        Student_Event::where('user_id', auth()->user()->id)
+                            ->where('event_id', $id)
+                            ->delete();
+        Student_Event_Company::where('user_id', auth()->user()->id)
+                            ->where('event_id', $id)
+                            ->delete();
+
+        return redirect('/event/'. $id);
+    }
+
+    public function signupToCompanyOnEvent (Request $request)
+    {
+    
+        $signup = new Student_Event_Company;
+       
+        $signup->user_id = auth()->user()->id;
+        $signup->event_id = $request->eventId;
+        $signup->company_id = $request->companyId;
+
+        $signup->save();
+
+        return redirect('/event/'. $request->eventId);
+    }
+
+    public function signoutOnCompanyOnEvent(Request $request)
+    {
+        Student_Event_Company::where('user_id', auth()->user()->id)
+                            ->where('event_id', $request->eventId)
+                            ->where('company_id', $request->companyId)
+                            ->delete();
+
+        return redirect('/event/'. $request->eventId);
+    }
+
+    public function getParticipants($id)
+    {
+        $select = Student_Event::where('event_id', $id)->get();
+
+        $selectcompany = Student_Event_Company::where('event_id', $id)->get();
+
+        $companies = Company::all();
+
+        $participants = User::all();
+
+        return view('/eventparticipants')->with(['select' => $select, 'participants' => $participants, 'companies' => $companies, 'selectcompany' => $selectcompany]);
     }
 
     // private function storeImage($request){
