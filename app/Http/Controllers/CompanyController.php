@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\User;
 use App\Models\Company_Event;
+use App\Models\Company_User;
 use Illuminate\Support\Facades\Storage;
+
 
 class CompanyController extends Controller
 {
@@ -84,7 +87,9 @@ class CompanyController extends Controller
                 unlink($oldImage);
             }
             $image_path = $request->file('image')->store('image', 'public');
-        } else {
+        } else if ($company->image == null) {
+            $image_path = "image/MicrosoftTeams-image.png";
+        } else  {
             $image_path = $company->image;
         }
 
@@ -102,4 +107,35 @@ class CompanyController extends Controller
 
         return redirect('/companyoverview');
     }
+    
+    public function addUsers(Request $request)
+    {
+        $data = $request->all(); // Dit is alle data die word door gepost van de form.
+        $companyid = $request->session()->pull("name");
+        $oldItems = Company::where('company_id', $companyid)->get();
+
+        foreach ($oldItems as $key=>$keyslot){ 
+            Company::where('id',$keyslot->id)->delete(); // Hier worden de oude items gedelete.
+        }
+        foreach (array_slice($data, 1) as $info) {
+            $newCompanyUserId = $info;
+            $company = new Company_User;
+            $company->company_id = $newEventCompanyId;
+            $company->user_id = $userid;
+            $company->save(); // Hier worden de nieuwe items toegevoegd.
+        }
+    
+        return redirect('/company/' . $companyid);
+    }
+
+    public function getUserList(Request $request, $id){
+        $request->session()->put("name", $id);
+
+        $users = User::where('role_id', "3")->get();
+
+        $companyUsers = Company_User::all();
+
+        return view('/companyusers')->with(['users'=> $users, "companyUsers" =>$companyUsers, 'id' => $id ]);
+    }
+
 }

@@ -5,6 +5,9 @@
         </h2>
         @auth
             @if(auth()->user()->role_id == 1)
+            <a href="/companyusers/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
+                    {{ __('Voeg gebruiker toe') }}
+            </a>
             <a href="{{ route('companyedit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl float-right font-extrabold px-3"> Edit </a>
             @endif
         @endauth

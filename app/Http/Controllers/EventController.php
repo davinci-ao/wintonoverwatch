@@ -97,7 +97,9 @@ class EventController extends Controller
                 unlink($oldImage);
             }
             $image_path = $request->file('image')->store('image', 'public');
-        } else {
+        } else if ($event->image == null) {
+            $image_path = "image/MicrosoftTeams-image.png";
+        } else  {
             $image_path = $event->image;
         }
 

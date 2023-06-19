@@ -45,8 +45,8 @@
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}</h1>
-                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d/m/Y')}} - {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-5">Start date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y')}} - {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">End date: {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y')}} - {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}</h1>
                     <h1 class="text-lg w-fit font-extrabold ml-5">Location: {{$data->location}}</h1>
                 </div>
                 @endforeach
@@ -55,7 +55,7 @@
                     @foreach ($company as $keys => $data)
                         @if ($data->id == $info->company_id)
                         <div class=" inline-block p-3 border-2 border-black text-center rounded-3xl h-84 w-60">
-                            <img src="https://cdn.pixabay.com/photo/2023/01/18/16/45/dinosaur-7727356_960_720.png" alt="" class="max-w-2xs rounded-lg">
+                            <img src="{{ Storage::url($data->image) }}" alt="" class="max-w-2xs rounded-lg">
                             <div class="static relative bottom-0 inline-block align-bottom">
                                  <h1 class="my-4 text-l font-extrabold font-medium text-gray-900 dark:text-white">
                                     {{$data->name}}

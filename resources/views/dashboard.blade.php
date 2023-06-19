@@ -28,7 +28,7 @@
                                 </h1>
 
                                 <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">
-                                    Date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('H:i d/m/Y')}}
+                                    Date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y H:i')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y H:i')}}
                                 </h1>
                                 <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">
                                     Location: {{$data->location}}
@@ -64,7 +64,7 @@
                                     </h1>
 
                                     <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">
-                                        Date: {{\Carbon\Carbon::parse($data->startDate)->format('H:i d/m/Y')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('H:i d/m/Y')}}
+                                        Date: {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y H:i')}} -> {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y H:i')}}
                                     </h1>
                                     <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">
                                         Location: {{$data->location}}
