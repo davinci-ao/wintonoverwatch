@@ -110,14 +110,19 @@ class CompanyController extends Controller
     
     public function addUsers(Request $request)
     {
+     
         $data = $request->all(); // Dit is alle data die word door gepost van de form.
         $companyid = $request->session()->pull("name");
-        $oldItems = Company::where('company_id', $companyid)->get();
+        $oldItems = Company_User::where('company_id', $companyid)->get();
+        $newEventCompanyId = $request->company_id;
+        $userid = $request->user_id;
 
         foreach ($oldItems as $key=>$keyslot){ 
-            Company::where('id',$keyslot->id)->delete(); // Hier worden de oude items gedelete.
+            Company_User::where('id',$keyslot->id)->delete(); // Hier worden de oude items gedelete.
         }
+
         foreach (array_slice($data, 1) as $info) {
+            
             $newCompanyUserId = $info;
             $company = new Company_User;
             $company->company_id = $newEventCompanyId;
