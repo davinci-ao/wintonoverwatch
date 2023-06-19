@@ -14,8 +14,9 @@ class CompanyController extends Controller
 {
     public function getDetails($id){
         $company = Company::where('id', $id)->get();
+        $companyusers = Company_User::where('company_id', $id)->where('user_id', auth()->user()->id)->first();
 
-        return view('/company')->with('company', $company);
+        return view('/company')->with(['company'=> $company, 'companyusers' => $companyusers]);
     }
 
     public function getCompanies(){
