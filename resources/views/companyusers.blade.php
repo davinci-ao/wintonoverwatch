@@ -19,10 +19,8 @@
                                 @endif
                             @endforeach>
                         <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" >{{$data->name}}</label><br>
-                       
                         @endforeach
-                        <input type="hidden" name="user_id" value="{{$data->id}}">
-                        <input type="hidden" name="company_id" value="{{$id}}">
+                        
                         
 
                         <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
