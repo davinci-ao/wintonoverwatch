@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('mail');
             $table->text('website_link');
             $table->string('location');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('image')->nullable();
         });
     }
