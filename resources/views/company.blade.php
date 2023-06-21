@@ -9,8 +9,12 @@
                     {{ __('Voeg gebruiker toe') }}
             </a>
             @endif
-            @if(auth()->user()->role_id == 1 || $companyusers->user_id == auth()->user()->id) 
+            @if(auth()->user()->role_id == 1 && $companyusers == null)
             <a href="{{ route('companyedit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl float-right font-extrabold px-3"> Edit </a>
+            @elseif ($companyusers != null)
+                @if($companyusers->user_id == auth()->user()->id)
+                <a href="{{ route('companyedit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl float-right font-extrabold px-3"> Edit </a>
+                @endif
             @endif
         @endauth
     </x-slot>
@@ -25,20 +29,20 @@
                     </div>
                 </div>
                 <div class="w-7/12 border-r-2 p-2 inline-block">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Descriptie:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
                     {{$data->long_description}}
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Name: </h1> <h1 class="inline-block">{{ $data->name }}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Internship type: </h1> <h1 class="inline-block">{{ $data->internship }}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Programming languages: </h1> <h1 class="inline-block">{{ $data->languages }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Naam: </h1> <h1 class="inline-block">{{ $data->name }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Stage type: </h1> <h1 class="inline-block">{{ $data->internship }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">ProgrammeerTalen: </h1> <h1 class="inline-block">{{ $data->languages }}</h1><br>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Contact: </h1> <h1 class="inline-block">{{$data->contact}}</h1><br>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Mail: </h1> <h1 class="inline-block">{{$data->mail}}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Phone: </h1> <h1 class="inline-block">{{$data->phone_number}}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Location: </h1> <h1 class="inline-block">{{$data->location}}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block  ">Website: <a href="{{$data->website_link}}" target="_blank" class="text-blue-500 underline">Click</a></h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Telefoonnummer: </h1> <h1 class="inline-block">{{$data->phone_number}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Locatie: </h1> <h1 class="inline-block">{{$data->location}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Website: <a href="{{$data->website_link}}" target="_blank" class="text-blue-500 underline">Click</a></h1>
                     
                 </div>
             </div>

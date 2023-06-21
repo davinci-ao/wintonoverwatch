@@ -27,13 +27,13 @@
                                 {{Str::title($data->name)}}
                                 </h1>
                                 <h2 class="inline-block font-extrabold">
-                                    Progamming languages: 
+                                    ProgrammeerTalen: 
                                 </h2>
                                 <h2 class="inline-block">
                                     {{ $data->languages }}
                                 </h2><br>
                                 <h2 class="inline-block font-extrabold">
-                                    Internship type: 
+                                    Stage type: 
                                 </h2>
                                 <h2 class="inline-block">
                                     {{ $data->internship }}
@@ -66,13 +66,13 @@
                                 {{Str::title($data->name)}}
                                 </h1>
                                 <h2 class="inline-block font-extrabold">
-                                    Progamming languages: 
+                                    ProgrammeerTalen: 
                                 </h2>
                                 <h2 class="inline-block">
                                     {{ $data->languages }}
                                 </h2><br>
                                 <h2 class="inline-block font-extrabold">
-                                    Internship type: 
+                                    Stage type: 
                                 </h2>
                                 <h2 class="inline-block">
                                     {{ $data->internship }}

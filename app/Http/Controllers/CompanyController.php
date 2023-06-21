@@ -84,7 +84,7 @@ class CompanyController extends Controller
 
         if (request()->hasFile('image') && request('image') != ''){
             $oldImage = public_path('storage/'.$company->image);
-            if($company->image != null){
+            if($company->image != null && $company->image != "image/MicrosoftTeams-image.png"){
                 unlink($oldImage);
             }
             $image_path = $request->file('image')->store('image', 'public');
@@ -93,7 +93,6 @@ class CompanyController extends Controller
         } else  {
             $image_path = $company->image;
         }
-
         Company::where('id', $id)->update([
             'name' => $request->name,
             'short_description' => $request->short_description,
@@ -104,6 +103,8 @@ class CompanyController extends Controller
             'phone_number' => $request->phone_number,
             'website_link' => $request->website_link,
             'location' => $request->location,
+            'languages' => $request->languages,
+            'internship' => $request->internship,
         ]);
 
         return redirect('/companyoverview');

@@ -44,7 +44,7 @@
                 @if(auth()->user()->role_id == 3)
                 <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">
                     @csrf
-                    <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700"> join event</button>
+                    <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">Woon event bij</button>
                 </form>
                 @endif  
             @endauth
@@ -71,26 +71,26 @@
                     @endif
                 @endauth
                 <div class="w-7/12 border-r-2 p-2 inline-block">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Description:</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Descriptie:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
                     {{$data->description}}
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
                     <h1 class="text-lg font-extrabold ml-5 mt-5 w-3/12 inline-block">
-                        Start date: 
+                        Start datum: 
                     </h1>
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                     {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}
                     </h1><br>
                     <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
-                        End date: 
+                        Eind datum: 
                     </h1>
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                         {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}
                     </h1>
                     <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
-                        Location: 
+                        Locatie: 
                     </h1>
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                     {{$data->location}}

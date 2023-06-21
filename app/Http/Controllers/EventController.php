@@ -87,7 +87,7 @@ class EventController extends Controller
 
         if (request()->hasFile('image') && request('image') != ''){
             $oldImage = public_path('storage/'.$event->image);
-            if($event->image != null){
+            if($event->image != null && $event->image != "image/MicrosoftTeams-image.png"){
                 unlink($oldImage);
             }
             $image_path = $request->file('image')->store('image', 'public');
