@@ -177,7 +177,7 @@
                                                         @csrf
                                                         <input type="hidden" name="companyId" value="{{ $info->company_id }}">
                                                         <input type="hidden" name="eventId" value="{{ $info->event_id }}">
-                                                        <button type="submit">Inschrijven</button>
+                                                        <button type="submit" class="text-blue-500 hover:text-red-500 underline">Inschrijven</button>
                                                     </form>
                                                 @elseif($inCompany == false)
                                                     <form method="POST" action="/event/signoutOnCompany">
@@ -188,7 +188,7 @@
                                                     </form>
                                                 @endif
                                             @endif
-                                        @endif
+                                            @endif
                                     @endauth
                                     </div>                                               
                                 </div>
