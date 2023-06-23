@@ -20,6 +20,12 @@
                         {{ __('Bedrijven') }}
                     </x-nav-link>
 
+                    @if(auth()->user()->role_id == 1)
+                        <x-nav-link href="/overviewusers">
+                            {{ __('Overzicht') }}
+                        </x-nav-link>
+                    @endif
+
                 @endauth
                 </div>
             </div>
