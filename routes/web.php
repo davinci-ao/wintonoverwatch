@@ -70,3 +70,5 @@ Route::post('/event/signupToCompany', [EventController::class, 'signupToCompanyO
 Route::post('/event/signoutOnCompany', [EventController::class, 'signoutOnCompanyOnEvent']);
 
 Route::get('/eventparticipants/{id}', [EventController::class, 'getParticipants']);
+
+Route::get('/overviewusers', [UserController::class, 'getAllUsers']);
