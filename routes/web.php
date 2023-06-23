@@ -75,4 +75,6 @@ Route::get('/overviewusers', [UserController::class, 'getAllUsers']);
 
 Route::get('/gebruiker/{id}', [UserController::class, 'deleteUser']);
 
-Route::delete('/users/deleteSelected', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
+Route::post('/users/deleteSelected', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
+
+Route::get('/userUpdate/{id}', [UserController::class, 'updateRoles']);

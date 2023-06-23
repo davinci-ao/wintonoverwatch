@@ -71,6 +71,18 @@ class UserController extends Controller
         return view('/overviewusers')->with('users', $users);
         
     }
+    public function handleForm(Request $request)
+    {
+        $action = $request->input('action');
+
+        if ($action === 'update') {
+            $this->updateRoles($request);
+        } elseif ($action === 'delete') {
+            $this->deleteSelected($request);
+        }
+
+        // Redirect of geef een antwoord terug aan de gebruiker
+    }
 
     public function deleteUser($id)
     {
@@ -87,19 +99,10 @@ class UserController extends Controller
         return view('/overviewusers')->with('users', $users);
     }
 
-    public function deleteSelected(Request $request)
+    public function updateRoles(Request $request, $id)
     {
-        $selectedIds = $request->input('selectedIds');
-
-    if (!empty($selectedIds)) {
-        foreach ($selectedIds as $id) {
-            Student_Event::where('user_id', $id)->delete();
-            Student_Event_Company::where('user_id', $id)->delete();
-            User::where('id', $id)->delete();
-        }
-    }
-
-    $users = User::all();
-    return view('/overviewusers')->with('users', $users);
+        User::where('id', $id)->update(['role_id' => $request->role_id]);   
+        $users = User::all();
+        return view('/overviewusers')->with('users', $users);     
     }
 }
