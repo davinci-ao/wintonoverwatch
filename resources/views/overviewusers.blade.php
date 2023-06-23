@@ -8,22 +8,18 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <form method="POST" action ="/overzichtusers">
+                <form method="POST" action ="{{ route('users.deleteSelected') }}">
                     @csrf
-                    <div class="w-4/5 m-5 ml-10">
-                        @foreach($users as $key => $data)
-                        <input type="checkbox" id="{{$data->name}}" name="{{$key}}" value="{{$data->id}}" class="mb-3 mt-2"
-                        @if($data->role_id == 1)
-                            <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" > {{$data->name}} - {{$data->email}} - Admin</label><br>
-                        
-                        @elseif($data->role_id == 2)
-                            <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" > {{$data->name}} - {{$data->email}} - Gebruiker</label><br>
-                        
-                        @else()
-                            <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" > {{$data->name}} - {{$data->email}} - Bedrijfsgebruiker</label><br>
-                        
-                        @endif
-                        
+                    @method('DELETE')
+                    <div class="w-11/12 m-5 ml-10">
+                        @foreach($users as $key => $data)                    
+                            @if (auth()->user()->id != $data->id)
+                                <input type="checkbox" name="selectedIds[]" value="{{$data->id}}" class="mb-3 mt-2">
+                                <label for="{{$data->name}}" class="text-l font-extrabold w-2/12 inline-block"> {{$data->name}} </label>
+                                <label for="{{$data->name}}" class="text-l font-extrabold w-4/12 inline-block"> {{$data->email}} </label>
+                                <label for="{{$data->name}}" class="text-l font-extrabold w-3/12 inline-block"> {{$data->role_id}} </label>
+                                <a href="/gebruiker/{{$data->id}}" class="text-l font-extrabold text-red-500 dark:text-white w-2/12">Delete</a><br>
+                            @endif
                         @endforeach
                         
                         

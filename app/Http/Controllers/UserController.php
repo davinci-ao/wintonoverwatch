@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Userinfo;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Student_Event;
+use App\Models\Student_Event_Company;
 
 class UserController extends Controller
 {
@@ -67,5 +70,36 @@ class UserController extends Controller
 
         return view('/overviewusers')->with('users', $users);
         
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if ($user) 
+        {
+            Student_Event::where('user_id', $user->id)
+                            ->delete();
+            Student_Event_Company::where('user_id', $user->id)
+                            ->delete();
+            $user->delete();
+        }
+        $users = User::all();
+        return view('/overviewusers')->with('users', $users);
+    }
+
+    public function deleteSelected(Request $request)
+    {
+        $selectedIds = $request->input('selectedIds');
+
+    if (!empty($selectedIds)) {
+        foreach ($selectedIds as $id) {
+            Student_Event::where('user_id', $id)->delete();
+            Student_Event_Company::where('user_id', $id)->delete();
+            User::where('id', $id)->delete();
+        }
+    }
+
+    $users = User::all();
+    return view('/overviewusers')->with('users', $users);
     }
 }

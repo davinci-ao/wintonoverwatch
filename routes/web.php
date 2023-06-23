@@ -72,3 +72,7 @@ Route::post('/event/signoutOnCompany', [EventController::class, 'signoutOnCompan
 Route::get('/eventparticipants/{id}', [EventController::class, 'getParticipants']);
 
 Route::get('/overviewusers', [UserController::class, 'getAllUsers']);
+
+Route::get('/gebruiker/{id}', [UserController::class, 'deleteUser']);
+
+Route::delete('/users/deleteSelected', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
