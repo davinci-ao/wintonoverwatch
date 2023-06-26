@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Userinfo;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Student_Event;
+use App\Models\Student_Event_Company;
 
 class UserController extends Controller
 {
@@ -67,5 +70,39 @@ class UserController extends Controller
 
         return view('/overviewusers')->with('users', $users);
         
+    }
+    public function handleForm(Request $request)
+    {
+        $action = $request->input('action');
+
+        if ($action === 'update') {
+            $this->updateRoles($request);
+        } elseif ($action === 'delete') {
+            $this->deleteSelected($request);
+        }
+
+        // Redirect of geef een antwoord terug aan de gebruiker
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if ($user) 
+        {
+            Student_Event::where('user_id', $user->id)
+                            ->delete();
+            Student_Event_Company::where('user_id', $user->id)
+                            ->delete();
+            $user->delete();
+        }
+        $users = User::all();
+        return view('/overviewusers')->with('users', $users);
+    }
+
+    public function updateRoles(Request $request, $id)
+    {
+        User::where('id', $id)->update(['role_id' => $request->role_id]);   
+        $users = User::all();
+        return view('/overviewusers')->with('users', $users);     
     }
 }

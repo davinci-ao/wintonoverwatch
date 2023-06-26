@@ -8,29 +8,26 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <form method="POST" action ="/overzichtusers">
-                    @csrf
-                    <div class="w-4/5 m-5 ml-10">
-                        @foreach($users as $key => $data)
-                        <input type="checkbox" id="{{$data->name}}" name="{{$key}}" value="{{$data->id}}" class="mb-3 mt-2"
-                        @if($data->role_id == 1)
-                            <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" > {{$data->name}} - {{$data->email}} - Admin</label><br>
-                        
-                        @elseif($data->role_id == 2)
-                            <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" > {{$data->name}} - {{$data->email}} - Gebruiker</label><br>
-                        
-                        @else()
-                            <label for="{{$data->name}}" class="text-center font-bold m-5 ml-2 text-2xl align-top" > {{$data->name}} - {{$data->email}} - Bedrijfsgebruiker</label><br>
-                        
+                <div class="w-11/12 m-5 ml-10">
+                    @foreach($users as $key => $data)
+                        @if (auth()->user()->id != $data->id)
+                            <label for="{{ $data->name }}" class="text-l font-extrabold w-2/12 inline-block">{{ $data->name }}</label>
+                            <label for="{{ $data->email }}" class="text-l font-extrabold w-4/12 inline-block">{{ $data->email }}</label>
+                            <form class="inline-block w-5/12" method="GET" action ="/userUpdate/{{ $data->id }}">
+                                <label for="{{ $data->role_id }}" class="text-l font-extrabold w-5/12 inline-block">
+                                    <select name="role_id" class="border border-gray-300 rounded-md p-1 w-11/12">
+                                        <option value="1"{{ $data->role_id == 1 ? ' selected' : '' }}>Admin</option>
+                                        <option value="2"{{ $data->role_id == 2 ? ' selected' : '' }}>Gebruiker</option>
+                                        <option value="3"{{ $data->role_id == 3 ? ' selected' : '' }}>Bedrijfsaccount</option>
+                                    </select>
+                                </label>
+                                <button type="submit" class="inline-block w-1/12">Update</button>
+                            </form>
+                            <a href="/gebruiker/{{ $data->id }}" class="text-l font-extrabold text-red-500 dark:text-white w-1/12 hover:text-black">Delete</a><br>
                         @endif
-                        
-                        @endforeach
-                        
-                        
+                    @endforeach
+                </div>
 
-                        <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-1/5 m-10 font-extrabold py-4 px-8 rounded-3xl hover:bg-sky-700">Submit</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
