@@ -46,7 +46,7 @@
                     $singedIn = true
                 @endphp
                     @foreach($companysInEvent as $number => $companyInEvent)
-                        @if($companyInEvent->user_id == NULL && $companyInEvent->event_id == $data->id)
+                        @if($companyInEvent->company_id == $companyId && $companyInEvent->event_id == $data->id)
                         @php
                             $singedIn = false
                         @endphp

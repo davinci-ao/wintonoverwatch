@@ -65,13 +65,16 @@ class EventController extends Controller
 
         $company = Company::all();
 
+        $userId = auth()->user()->id;
+        $companyId = Company_user::where('user_id', $userId)->value('company_id');  
+
         $participants = Student_Event::all();
 
         $companysInEvent = Company_Event::all();
 
         $studentEventCompanies = Student_Event_Company::all();
 
-        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies, 'companysInEvent' => $companysInEvent]);
+        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies, 'companysInEvent' => $companysInEvent, 'companyId' => $companyId, 'userId' => $userId]);
     }
 
     public function edit($id)
@@ -159,7 +162,7 @@ class EventController extends Controller
         Company_Event::where('event_id', $id)
                         ->where('company_id', $companyId)
                         ->delete();
-
+                        
         return redirect('/event/'. $id);
     }
 
