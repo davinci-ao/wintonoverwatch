@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Student_Event;
 use App\Models\Company;
 use App\Models\Company_Event;
+use App\Models\Company_User;
 use App\Models\Student_Event_Company;
 use App\Models\Userinfo;
 use App\Models\User;
@@ -66,9 +67,11 @@ class EventController extends Controller
 
         $participants = Student_Event::all();
 
+        $companysInEvent = Company_Event::all();
+
         $studentEventCompanies = Student_Event_Company::all();
 
-        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies]);
+        return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies, 'companysInEvent' => $companysInEvent]);
     }
 
     public function edit($id)
@@ -136,16 +139,28 @@ class EventController extends Controller
     public function join($id)
     {
         $event = new Company_Event;
-        
         $userId = auth()->user()->id;
+        $companyId = Company_user::where('user_id', $userId)->value('company_id');        
         
-        $event->company_id = $userId;
+        $event->company_id = $companyId;
 
         $event->event_id = $id;
 
         $event->save();
 
         return redirect()->back();
+    }
+
+    public function leave($id)
+    {
+        $userId = auth()->user()->id;
+        $companyId = Company_user::where('user_id', $userId)->value('company_id');
+
+        Company_Event::where('event_id', $id)
+                        ->where('company_id', $companyId)
+                        ->delete();
+
+        return redirect('/event/'. $id);
     }
 
     public function signup($id)

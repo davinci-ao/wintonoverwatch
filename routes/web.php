@@ -57,6 +57,8 @@ Route::post('/company/{id}', [CompanyController::class, 'update'])->name('compan
 
 Route::post('/eventjoin/{id}', [EventController::class, 'join'])->name('event.join');
 
+Route::post('/eventleave/{id}', [EventController::class, 'leave'])->name('event.leave');
+
 Route::get('/companyusers/{id}', [CompanyController::class, 'getUserList']);
 
 Route::post('/company/add/{id}', [CompanyController::class, 'addUsers']);

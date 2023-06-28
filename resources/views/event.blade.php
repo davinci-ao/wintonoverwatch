@@ -42,10 +42,29 @@
                 @endif
                 <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
                 @if(auth()->user()->role_id == 3)
-                <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">Woon event bij</button>
-                </form>
+                    @php 
+                    $singedIn = true
+                @endphp
+                    @foreach($companysInEvent as $number => $companyInEvent)
+                        @if($companyInEvent->user_id == NULL && $companyInEvent->event_id == $data->id)
+                        @php
+                            $singedIn = false
+                        @endphp
+                            
+                        @endif
+                    @endforeach
+                    @if($singedIn == true)
+                        
+                        <form action="{{ route('event.join', ['id' => $data->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">Woon event bij</button>
+                        </form>
+                    @elseif($singedIn == false)
+                        <form action="{{ route('event.leave', ['id' => $data->id]) }}" method="POST">
+                            @csrf   
+                            <button type="submit" class="uppercase bg-red-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-red-600">Uitschrijven van event</button>
+                        </form>
+                    @endif
                 @endif  
             @endauth
             
