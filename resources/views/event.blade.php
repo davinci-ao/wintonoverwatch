@@ -172,9 +172,9 @@
                                     </h1>                               
                                 </div>
                                 <div class="w-7/12 inline-block">
-                                    <h1>
-                                        Wat wij komen doen:
-                                    </h1>
+                                    <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
+                                        {{$info->company_details}}
+                                    </h1> 
                                 </div>
                                 <div class="w-1/12 inline-block">
                                     @auth
