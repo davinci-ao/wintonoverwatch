@@ -29,21 +29,21 @@
                     </div>
                 </div>
                 <div class="w-7/12 border-r-2 p-2 inline-block">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Descriptie:</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Omschrijving:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
                     {{$data->long_description}}
                     </h2>
                 </div>
                 <div class="w-4/12 inline-block align-top">
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Naam: </h1> <h1 class="inline-block">{{ $data->name }}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Stage type: </h1> <h1 class="inline-block">{{ $data->internship }}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">ProgrammeerTalen: </h1> <h1 class="inline-block">{{ $data->languages }}</h1><br>
-                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Contact: </h1> <h1 class="inline-block">{{$data->contact}}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Stagesoort: </h1> <h1 class="inline-block">{{ $data->internship }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Programmeertalen: </h1> <h1 class="inline-block">{{ $data->languages }}</h1><br>
+                    <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Contactpersoon: </h1> <h1 class="inline-block">{{$data->contact}}</h1><br>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Mail: </h1> <h1 class="inline-block">{{$data->mail}}</h1><br>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Telefoonnummer: </h1> <h1 class="inline-block">{{$data->phone_number}}</h1><br>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Locatie: </h1> <h1 class="inline-block">{{$data->location}}</h1><br>
                     <h1 class="text-lg w-fit font-extrabold ml-5 mt-3 inline-block">Website: <a href="{{$data->website_link}}" target="_blank" class="text-blue-500 underline">Click</a></h1>
-                    
+
                 </div>
             </div>
         </div>
