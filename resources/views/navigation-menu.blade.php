@@ -22,7 +22,7 @@
 
                     @if(auth()->user()->role_id == 1)
                         <x-nav-link href="/overviewusers">
-                            {{ __('Overzicht') }}
+                            {{ __('Gebruikers') }}
                         </x-nav-link>
                     @endif
 
@@ -183,7 +183,7 @@
                 @endif
 
                 <div>
-                    
+
                 </div>
             </div>
 
