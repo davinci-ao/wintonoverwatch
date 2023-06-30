@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-left mt-4">
-            {{ __('Overzicht:') }}
+            {{ __('Gebruikers') }}
         </h2>
     </x-slot>
 
@@ -21,9 +21,9 @@
                                         <option value="3"{{ $data->role_id == 3 ? ' selected' : '' }}>Bedrijfsaccount</option>
                                     </select>
                                 </label>
-                                <button type="submit" class="inline-block w-1/12">Update</button>
+                                <button type="submit" class="inline-block w-1/12">Toepassen</button>
                             </form>
-                            <a href="/gebruiker/{{ $data->id }}" class="text-l font-extrabold text-red-500 dark:text-white w-1/12 hover:text-black">Delete</a><br>
+                            <a href="/gebruiker/{{ $data->id }}" class="text-l font-extrabold text-red-500 dark:text-white w-1/12 hover:text-black">Verwijder</a><br>
                         @endif
                     @endforeach
                 </div>
