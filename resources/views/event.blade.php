@@ -64,6 +64,9 @@
                             @csrf   
                             <button type="submit" class="uppercase bg-red-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-red-600">Uitschrijven van event</button>
                         </form>
+                        <a href="/eventjoin/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
+                            {{ __('Details') }}
+                        </a>
                     @endif
                 @endif  
             @endauth
@@ -131,11 +134,6 @@
                         <div class="w-1/12 inline-block">
                             <h1>
                                 @auth
-                                    @if(auth()->user()->role_id == 1)
-                                        <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                            edit
-                                        </h1>
-                                    @endif
                                     @if(auth()->user()->role_id == 2)
                                         <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
                                             Inschrijven
