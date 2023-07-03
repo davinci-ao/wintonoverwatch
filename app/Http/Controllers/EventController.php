@@ -234,6 +234,30 @@ class EventController extends Controller
         return view('/eventparticipants')->with(['select' => $select, 'participants' => $participants, 'companies' => $companies, 'selectcompany' => $selectcompany]);
     }
 
+    public function specificCompany(Request $request)
+    {   
+        $data = $request->all();
+
+
+       
+        $eventid = $request->session()->pull("name");
+        
+    
+
+        foreach ($data as $key => $info) {
+            if (is_numeric($key)) {
+                $newEventCompanyId = $info;
+                $event = Company_Event::where('company_id', $newEventCompanyId)->first();
+                $event->company_id = $newEventCompanyId;
+                $event->event_id = $eventid;
+                $event->company_details = $data['company_details'][$key]; // Assign company details to the column
+                $event->update();
+            }
+        }
+    
+        return redirect('/event/' . $eventid);
+    }
+
     // private function storeImage($request){
     //     $newImageName = uniqid() . '-' . $request->thumbnail . '.' .
     //     $request->image->extension();

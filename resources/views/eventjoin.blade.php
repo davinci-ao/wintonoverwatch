@@ -8,7 +8,7 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <form id="companyForm" method="POST" action="/event/company/add">
+                <form id="companyForm" method="POST" action="/event/company/detailsAdd">
                     @csrf
                     <div class="w-4/5 m-5 ml-10">
                         @foreach($companies as $key => $data)
