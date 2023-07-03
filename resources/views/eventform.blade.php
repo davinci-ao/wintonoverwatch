@@ -14,21 +14,21 @@
                         <label for="visible" class="inline-block w-6/12 text-center font-bold text-2xl align-top">Wilt u dat het evenement zichtbaar is?</label>
                         <input type="checkbox" id="visible" name="visible" value="1" {{ old('visible') ? 'checked' : '' }} class="h-6 w-6"><br>
 
-                        <label for="name" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Naam:</label> 
+                        <label for="name" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Naam:</label>
                         <input type="text" name="name" id="name" placeholder="Enter name here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
-                        <label for="location" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Locatie:</label> 
+                        <label for="location" class="inline-block w-2/12 text-center font-bold m-5 text-2xl">Locatie:</label>
                         <input type="text" name="location" id="location" placeholder="Enter location here..." class="bg-transparent mx-auto border-b-2 w-9/12 h-12 text-2xl outline-none" required><br>
 
-                        <label for="description" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Descriptie:</label> 
+                        <label for="description" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Omschrijving:</label>
                         <textarea rows="4" cols="50" id="description" name="description" placeholder="Enter description here..."  class="bg-transparent mx-auto border-b-2 w-9/12 h-w-3.5 text-2xl outline-none" required></textarea><br>
-                        
-                        <label for="startDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top" >StartDatum:</label>  
+
+                        <label for="startDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top" >Startdatum:</label>
                         <input type="datetime-local" name="startDate" value="" id="startDate" name="startDate" min="{{Carbon\Carbon::now()->format('Y-m-d')}}T{{Carbon\Carbon::now()->format('H:i')}}" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
 
-                        <label for="endDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">EindDatum:</label>
+                        <label for="endDate" class="inline-block w-2/12 text-center font-bold m-5 text-2xl align-top">Einddatum:</label>
                         <input type="datetime-local" id="endDate" name="endDate" class="bg-transparent mx-auto border-b-2 h-12 text-2xl outline-none" required><br>
-                        
+
                         <label class="block mb-4">
                         <span class="sr-only">Kies een foto</span>
                         <input type="file" name="image"

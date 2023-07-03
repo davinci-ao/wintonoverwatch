@@ -3,6 +3,8 @@ use App\http\Controllers\EventController;
 use App\http\Controllers\CompanyController;
 use App\http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckEndDate;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EventController::class, 'getEvents'])->name('dashboard');
 
-Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
+// Route::get('/dashboard', [EventController::class, 'getEvents'])->name('dashboard');
+
+Route::get('/dashboard' , [EventController::class, 'getEvents'])->middleware(CheckEndDate::class);
 
 Route::get('/eventform', function(){
     return view('eventform');

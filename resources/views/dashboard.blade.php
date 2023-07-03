@@ -31,7 +31,7 @@
                                 <h1 class="text-xl text-gray-900 dark:text-white font-extrabold w-full inline-block">Locatie: {{$data->location}}</h1>
                                 
                                 <p class="mt-2 mb-3 text-gray-500 dark:text-gray-400 leading-relaxed">
-                                    {{$data->description}}
+                                    {{Str::limit($data->description, 500)}}
                                 </p>
 
                             </div>
