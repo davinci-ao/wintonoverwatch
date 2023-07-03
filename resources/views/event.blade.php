@@ -97,13 +97,13 @@
                 </div>
                 <div class="w-4/12 inline-block align-top">
                     <h1 class="text-lg font-extrabold ml-5 mt-5 w-3/12 inline-block">
-                        Startdatum:
+                        Start datum:
                     </h1>
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                     {{\Carbon\Carbon::parse($data->startDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->startDate)->format('H:i')}}
                     </h1><br>
                     <h1 class="text-lg font-extrabold ml-5 w-3/12 inline-block">
-                        Einddatum:
+                        Eind datum:
                     </h1>
                     <h1 class="text-lg font-extrabold w-6/12 inline-block">
                         {{\Carbon\Carbon::parse($data->endDate)->format('d-m-Y')}} {{\Carbon\Carbon::parse($data->endDate)->format('H:i')}}
@@ -203,7 +203,7 @@
                                                         @csrf
                                                         <input type="hidden" name="companyId" value="{{ $info->company_id }}">
                                                         <input type="hidden" name="eventId" value="{{ $info->event_id }}">
-                                                        <button type="submit">Uitschrijven</button>
+                                                        <button type="submit" class="text-blue-500 hover:text-red-500 underline">Uitschrijven</button>
                                                     </form>
                                                 @endif
                                             @endif
