@@ -85,12 +85,12 @@
                     <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
                     @if(auth()->user()->role_id == 1)
                         <div class="bg-gray-100 px-4 py-1 flex justify-end">
-                            <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Edit </a>
+                            <a href="{{ route('eventEdit', $data->id) }}" class="uppercase bg-blue-500 text-gray-300 hover:text-gray-900 rounded-3xl font-extrabold px-3"> Aanpassen </a>
                         </div>
                     @endif
                 @endauth
                 <div class="w-7/12 border-r-2 p-2 inline-block">
-                    <h1 class="text-lg w-fit font-extrabold ml-5">Descriptie:</h1>
+                    <h1 class="text-lg w-fit font-extrabold ml-5">Omschrijving:</h1>
                     <h2 class="font-semibold text-l text-gray-800 dark:text-gray-200 leading-tight m-5">
                     {{$data->description}}
                     </h2>
@@ -133,7 +133,7 @@
                                 @auth
                                     @if(auth()->user()->role_id == 1)
                                         <h1 class="my-1 text-l font-extrabold text-gray-900 dark:text-white">
-                                            edit
+                                            Aanpassen
                                         </h1>
                                     @endif
                                     @if(auth()->user()->role_id == 2)
