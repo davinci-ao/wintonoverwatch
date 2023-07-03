@@ -142,4 +142,29 @@ class CompanyController extends Controller
         return view('/companyusers')->with(['users'=> $users, "companyUsers" =>$companyUsers, 'id' => $id ]);
     }
 
+    public function getInfo(Request $request, $id)
+    {
+        $request->session()->put("name", $id);
+    
+        $userId = auth()->user()->id;
+    
+        // Haal het bedrijf van de huidige gebruiker op basis van de gebruikers-ID
+        $companyId = Company_user::where('user_id', $userId)->value('company_id');
+    
+        // Haal alleen het bedrijf van de huidige gebruiker op
+        $company = Company::find($companyId);
+    
+        $addedCompanies = Company_Event::all();
+    
+        return view('/eventjoin')->with([
+            'companies' => $company ? [$company] : [],
+            'eventid' => $id,
+            'addedCompanies' => $addedCompanies
+        ]);
+    }
+    
+    
+    
+
+
 }

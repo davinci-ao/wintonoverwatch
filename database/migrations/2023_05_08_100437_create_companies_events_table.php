@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('company_id');
             $table->integer('event_id');
             $table->timestamps();
+            $table->string('company_details')->nullable();
         });
     }
 

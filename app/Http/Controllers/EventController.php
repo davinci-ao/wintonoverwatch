@@ -119,23 +119,30 @@ class EventController extends Controller
 
     public function addCompanies(Request $request)
     {
-        $data = $request->all(); // Dit is alle data die word door gepost van de form.
+        $data = $request->all();
         $eventid = $request->session()->pull("name");
         $oldItems = Company_Event::where('event_id', $eventid)->get();
-
-        foreach ($oldItems as $key=>$keyslot){ 
-            Company_Event::where('id',$keyslot->id)->delete(); // Hier worden de oude items gedelete.
+    
+        foreach ($oldItems as $keyslot) {
+            Company_Event::where('id', $keyslot->id)->delete();
         }
-        foreach (array_slice($data, 1) as $info) {
-            $newEventCompanyId = $info;
-            $event = new Company_Event;
-            $event->company_id = $newEventCompanyId;
-            $event->event_id = $eventid;
-            $event->save(); // Hier worden de nieuwe items toegevoegd.
+    
+        foreach ($data as $key => $info) {
+            if (is_numeric($key)) {
+                $newEventCompanyId = $info;
+                $event = new Company_Event;
+                $event->company_id = $newEventCompanyId;
+                $event->event_id = $eventid;
+                $event->company_details = $data['company_details'][$key]; // Assign company details to the column
+                $event->save();
+            }
         }
     
         return redirect('/event/' . $eventid);
     }
+    
+    
+    
     
 
 
@@ -225,6 +232,30 @@ class EventController extends Controller
         $participants = User::all();
 
         return view('/eventparticipants')->with(['select' => $select, 'participants' => $participants, 'companies' => $companies, 'selectcompany' => $selectcompany]);
+    }
+
+    public function specificCompany(Request $request)
+    {   
+        $data = $request->all();
+
+
+       
+        $eventid = $request->session()->pull("name");
+        
+    
+
+        foreach ($data as $key => $info) {
+            if (is_numeric($key)) {
+                $newEventCompanyId = $info;
+                $event = Company_Event::where('company_id', $newEventCompanyId)->first();
+                $event->company_id = $newEventCompanyId;
+                $event->event_id = $eventid;
+                $event->company_details = $data['company_details'][$key]; // Assign company details to the column
+                $event->update();
+            }
+        }
+    
+        return redirect('/event/' . $eventid);
     }
 
     // private function storeImage($request){

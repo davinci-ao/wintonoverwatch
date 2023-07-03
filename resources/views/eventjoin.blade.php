@@ -8,11 +8,11 @@
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <form id="companyForm" method="POST" action="/event/company/add">
+                <form id="companyForm" method="POST" action="/event/company/detailsAdd">
                     @csrf
                     <div class="w-4/5 m-5 ml-10">
                         @foreach($companies as $key => $data)
-                            <input type="checkbox" id="{{$data->name}}" name="{{$key}}" value="{{$data->id}}" class="mb-3 mt-2"
+                            <input type="checkbox" id="{{$data->name}}" name="{{$key}}" value="{{$data->id}}" class="mb-3 mt-2 hidden"
                                 @foreach($addedCompanies as $info => $check)
                                     @if ($check->event_id == $eventid)
                                         @if($check->company_id == $data->id) checked @endif
@@ -42,30 +42,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('companyForm').addEventListener('submit', function(event) {
-            const inputs = document.getElementsByClassName('company-details-input');
-            let hasError = false;
-            for (let i = 0; i < inputs.length; i++) {
-                const input = inputs[i];
-                const companyId = input.getAttribute('data-company-id');
-                const checkbox = document.querySelector(`[value="${companyId}"]`);
-                const errorMessage = input.nextElementSibling;
-                if (checkbox && checkbox.checked && input.value.trim() === '') {
-                    hasError = true;
-                    input.classList.add('border-red-500');
-                    errorMessage.classList.remove('hidden');
-                } else {
-                    input.classList.remove('border-red-500');
-                    errorMessage.classList.add('hidden');
-                }
-            }
-
-            if (hasError) {
-                event.preventDefault();
-            }
-        });
-    </script>
 </x-app-layout>
-

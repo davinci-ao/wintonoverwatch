@@ -84,3 +84,7 @@ Route::get('/gebruiker/{id}', [UserController::class, 'deleteUser']);
 Route::post('/users/deleteSelected', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
 
 Route::get('/userUpdate/{id}', [UserController::class, 'updateRoles']);
+
+Route::get('/eventjoin/{id}', [CompanyController::class, 'getInfo']);
+
+Route::post('/event/company/detailsAdd', [EventController::class, 'specificCompany']);
