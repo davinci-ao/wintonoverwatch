@@ -12,6 +12,7 @@ use App\Models\Student_Event_Company;
 
 class UserController extends Controller
 {
+    //Retrieves the current user's details to display on their profile
     public function getUser($id)
     {
         $user = Auth::user();
@@ -38,6 +39,7 @@ class UserController extends Controller
         
     }
 
+    //Checks if the user is an admin before it redirects to a form
     public function viewForm(Request $request, $id)
     {
         $user = Auth::user();
@@ -51,6 +53,7 @@ class UserController extends Controller
         }
     }
 
+    //Updates the user details
     public function updateUser(Request $request)
     {
         $id = $request->session()->pull("userid");
@@ -65,12 +68,15 @@ class UserController extends Controller
 
         return redirect('/profile/'. $id);
     }
+
+    //Retrieves a list of all users
     public function getAllUsers(){
         $users = User::all();
 
         return view('/overviewusers')->with('users', $users);
-        
     }
+
+    // Redirect of geef een antwoord terug aan de gebruiker
     public function handleForm(Request $request)
     {
         $action = $request->input('action');
@@ -80,10 +86,9 @@ class UserController extends Controller
         } elseif ($action === 'delete') {
             $this->deleteSelected($request);
         }
-
-        // Redirect of geef een antwoord terug aan de gebruiker
     }
 
+    //Function for an admin to delete a user
     public function deleteUser($id)
     {
         $user = User::find($id);
@@ -99,6 +104,7 @@ class UserController extends Controller
         return view('/overviewusers')->with('users', $users);
     }
 
+    //Function for an admin to change the roles of all users
     public function updateRoles(Request $request, $id)
     {
         User::where('id', $id)->update(['role_id' => $request->role_id]);   

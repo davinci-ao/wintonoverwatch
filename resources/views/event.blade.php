@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         @foreach ($event as $key => $data)
+            <!-- Counts up all the students participating in an event  -->
             @php
                 $studentnumber = 0;
             @endphp
@@ -10,7 +11,7 @@
                 @endphp
             @endforeach
             @auth
-            <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
+            <!-- role_id checks if the user is an admin(1)/user(2)/company(3) and generates a button accordingly -->
             @if(auth()->user()->role_id == 1)
                 <a href="/eventcompanies/{{$data->id}}" class="uppercase bg-blue-500 text-gray-100 text-lg w-fit font-extrabold py-3 px-6 rounded-3xl float-right hover:bg-sky-700">
                     {{ __('Voeg bedrijf toe') }}
@@ -22,6 +23,7 @@
                 @php
                     $present = true
                 @endphp
+                    <!-- Checks if the user is signed in to the event -->
                     @foreach($participants as $number => $student)
                         @if($student->user_id == auth()->user()->id && $student->event_id == $data->id)
                         @php
@@ -40,11 +42,12 @@
                         </a>
                     @endif
                 @endif
-                <!-- role_id checks if the user is an admin(1)/user(2)/company(3) -->
+                <!-- role_id checks if the user is an admin(1)/user(2)/company(3) and generates a button accordingly-->
                 @if(auth()->user()->role_id == 3)
                     @php
                     $singedIn = true
                 @endphp
+                    <!-- checks if the company thats signed in is in the event -->
                     @foreach($companysInEvent as $number => $companyInEvent)
                         @if($companyInEvent->company_id == $companyId && $companyInEvent->event_id == $data->id)
                         @php
@@ -184,6 +187,7 @@
                                     @php
                                         $inCompany = true
                                     @endphp
+                                        <!-- Checks if the user is signed to a company in an event -->
                                         @foreach($business as $businessKey => $businessData)
                                             @if($businessData->user_id == auth()->user()->id && $businessData->event_id == $info->event_id && $businessData->company_id == $info->company_id)
                                             @php
