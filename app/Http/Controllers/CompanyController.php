@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
+    //Retrieves the details of a specific company to display on their own page
     public function getDetails($id){
         $company = Company::where('id', $id)->get();
         $companyusers = Company_User::where('company_id', $id)->where('user_id', auth()->user()->id)->first();
@@ -19,12 +20,14 @@ class CompanyController extends Controller
         return view('/company')->with(['company'=> $company, 'companyusers' => $companyusers]);
     }
 
+    //Retrieves a list of all companies
     public function getCompanies(){
         $companies = Company::all();
 
         return view('/companyoverview')->with('companies', $companies);
     }
 
+    //Gets a list to update all companies activities in an event
     public function getList(Request $request, $id){
         $request->session()->put("name", $id);
 
@@ -35,6 +38,7 @@ class CompanyController extends Controller
         return view('/eventcompanies')->with(['companies'=> $companies, 'eventid' =>$id, "addedCompanies" =>$addedCompanies ]);
     }
 
+    //Creates a new company
     public function create(Request $request){
         $company = new Company;
 
@@ -66,21 +70,22 @@ class CompanyController extends Controller
         return redirect('/companyoverview');
     }
 
+    //Redirects to an edit form
     public function companyedit($id)
     {
         return view('companyedit',[
             'company' => Company::where('id', $id)->first()
         ]);
     }
+
+    //Updates a company with data from an edit form
     public function update (Request $request, $id)
     {
-     
         $company = Company::where('id', $id)->first();
         
         $this->validate($request, [
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-        
 
         if (request()->hasFile('image') && request('image') != ''){
             $oldImage = public_path('storage/'.$company->image);
@@ -110,6 +115,7 @@ class CompanyController extends Controller
         return redirect('/companyoverview');
     }
     
+    //Function to add users to a company
     public function addUsers(Request $request)
     {   
         $data = $request->all(); // Dit is alle data die word door gepost van de form.
@@ -132,6 +138,7 @@ class CompanyController extends Controller
         return redirect('/company/' . $companyid);
     }
 
+    //Gets a list of all company accounts
     public function getUserList(Request $request, $id){
         $request->session()->put("companyname", $id);
 
@@ -142,6 +149,7 @@ class CompanyController extends Controller
         return view('/companyusers')->with(['users'=> $users, "companyUsers" =>$companyUsers, 'id' => $id ]);
     }
 
+    //Gets a specific companies info to display on a form to update a company's activity
     public function getInfo(Request $request, $id)
     {
         $request->session()->put("name", $id);

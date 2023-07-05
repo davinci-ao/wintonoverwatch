@@ -16,6 +16,7 @@ use Auth;
 
 class EventController extends Controller
 {
+    //Retrieves all events to display on the dashboard
     public function getEvents(){
         $events = Event::all();
 
@@ -23,6 +24,7 @@ class EventController extends Controller
         
     }
 
+    //Function to create a new event
     public function create(Request $request){
         $event = new Event;
 
@@ -58,6 +60,7 @@ class EventController extends Controller
         return redirect('/dashboard');
     }
 
+    //Retrieves all information needed to display on a specific event page
     public function getDetails($id){
         $event = Event::where('id', $id)->get();
 
@@ -77,12 +80,15 @@ class EventController extends Controller
         return view('/event')->with(['event' => $event, 'select' => $select, 'company' => $company, 'participants' => $participants, 'business' => $studentEventCompanies, 'companysInEvent' => $companysInEvent, 'companyId' => $companyId, 'userId' => $userId]);
     }
 
+    //Redirects to an edit form with all the old information from an event
     public function edit($id)
     {
         return view('eventEdit',[
             'event' => Event::where('id', $id)->first()
         ]);
     }
+
+    //Updates an event with information from an edit form
     public function update (Request $request, $id)
     {
         $event = Event::where('id', $id)->first();
@@ -116,7 +122,8 @@ class EventController extends Controller
         return redirect('/dashboard');
     }
 
-
+    //Adds companies to an event
+    //Only available to admins
     public function addCompanies(Request $request)
     {
         $data = $request->all();
@@ -140,12 +147,8 @@ class EventController extends Controller
     
         return redirect('/event/' . $eventid);
     }
-    
-    
-    
-    
 
-
+    //Function for companies to sign in to an event
     public function join($id)
     {
         $event = new Company_Event;
@@ -161,6 +164,7 @@ class EventController extends Controller
         return redirect()->back();
     }
 
+    //Function for companies to sign out of an event
     public function leave($id)
     {
         $userId = auth()->user()->id;
@@ -173,6 +177,7 @@ class EventController extends Controller
         return redirect('/event/'. $id);
     }
 
+    //Function for students/users to sign in to an event
     public function signup($id)
     {
         $signup = new Student_Event;
@@ -185,6 +190,7 @@ class EventController extends Controller
         return redirect('/event/'. $id);
     }
     
+    //Function for students/users to sign out of an event
     public function signout($id)
     {
         Student_Event::where('user_id', auth()->user()->id)
@@ -197,6 +203,7 @@ class EventController extends Controller
         return redirect('/event/'. $id);
     }
 
+    //Function for students/users to sign in to a company inside an event
     public function signupToCompanyOnEvent (Request $request)
     {
     
@@ -211,6 +218,7 @@ class EventController extends Controller
         return redirect('/event/'. $request->eventId);
     }
 
+    //Function for students/users to sign out of a company inside an event
     public function signoutOnCompanyOnEvent(Request $request)
     {
         Student_Event_Company::where('user_id', auth()->user()->id)
@@ -221,6 +229,7 @@ class EventController extends Controller
         return redirect('/event/'. $request->eventId);
     }
 
+    //Retrieves a list of all participants of an event and the companies they signed up with
     public function getParticipants($id)
     {
         $select = Student_Event::where('event_id', $id)->get();
@@ -234,15 +243,12 @@ class EventController extends Controller
         return view('/eventparticipants')->with(['select' => $select, 'participants' => $participants, 'companies' => $companies, 'selectcompany' => $selectcompany]);
     }
 
+    //Updates the company's activity in an event
     public function specificCompany(Request $request)
     {   
         $data = $request->all();
-
-
        
         $eventid = $request->session()->pull("name");
-        
-    
 
         foreach ($data as $key => $info) {
             if (is_numeric($key)) {
